@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('article', [
             'active' => 'articles',
             "title" => "Single Article",
-            "article" => $article,
+            "article" => $article, 
         ]);
     }
 }

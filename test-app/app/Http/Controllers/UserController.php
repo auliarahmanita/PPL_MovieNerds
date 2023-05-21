@@ -15,4 +15,6 @@ class UserController extends Controller
             'articles' => $author->articles()->load('tag', 'author'),
         ]);
     }
+
+    
 }

@@ -38,6 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'password',
+        'photo'
+    ];
+
     public function articles() {
         return $this->hasMany(Article::class);
     }

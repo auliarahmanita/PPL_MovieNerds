@@ -22,13 +22,13 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-// Route::get('/', function () {
-//     $strHome = 'home';
-//     return view('home', [
-//         'active' => "$strHome",
-//         'title' => 'Home',
-//     ]);
-// });
+Route::get('/', function () {
+    $strHome = 'landing';
+    return view('landing', [
+        'active' => "$strHome",
+        'title' => 'Landing',
+    ]);
+});
 
 Route::get('/about', function () {
         return view('about', [
@@ -40,8 +40,9 @@ Route::get('/about', function () {
     }
 );
 
-Route::get('/', [ArticleController::class, 'home']);
 
+
+Route::get('/home', [ArticleController::class, 'home']);
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
 Route::get('/tags', [TagController::class, 'index']);
@@ -49,6 +50,9 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/tier', [TierController::class, 'index']);
 
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/register', [RegisterController::class, 'store']);

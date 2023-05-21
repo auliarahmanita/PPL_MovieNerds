@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+{{-- @extends(Auth::check() ? 'partials.navbarlogged' : 'layouts.main') --}}
+
 @section('container')
     {{-- <h1 class="mb-3 text-center">{{ $title }}</h1> --}}
 
@@ -45,6 +47,11 @@
             </div>
             <br>
             @endforeach
+        </div>
+        <div>
+            <button type="button">
+                <a href="/articles">Index Artikel</a>
+            </button>
         </div>
     </div>
     
