@@ -5,6 +5,11 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if(session('success'))
+                    <div>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
                 <div class="col-md-4">
                     @if($user->photo)
                         <img src="{{ asset('storage/photos/'.$user->photo) }}" class="img-thumbnail rounded mx-auto d-block">
@@ -15,31 +20,32 @@
                 <h1 class="mb-5">{{$user->username}}</h1>
                 <p class="mb-5">{{$user->bio}}</p>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <h1>Artikel saya</h1>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Semua</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Draft</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Disetujui</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ditolak</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        {{-- <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($posts as $post)
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach($articles as $articles)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $post->title }}
+                                    {{ $articles->title }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-indigo-800">{{ $post->category->name }}</span>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-indigo-800">{{ $articles->tag->name }}</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium space-x-2">
-                                    <a href="/dashboard/posts/{{ $post->slug }}" class="text-indigo-600 hover:text-indigo-900">Detail</a>
-                                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <form action="/dashboard/posts/{{ $post->slug }}" class="inline-block" method="post">
+                                    <a href="/dashboard/articles/{{ $articles->slug }}" class="text-indigo-600 hover:text-indigo-900">Detail</a>
+                                    <a href="/dashboard/articles/{{ $articles->slug }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <form action="/dashboard/articles/{{ $articles->slug }}" class="inline-block" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button onclick="return confirm('Are you sure to delete this post?')" class="text-red-600 hover:text-red-900">Delete</button>
@@ -47,8 +53,16 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
+
+                    <button>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/dashboard/articles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Dashboard</a>
+                    </button>
+                </div>
+
+                <div>
+
                 </div>
                     <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
                     <div class="card">
@@ -72,7 +86,7 @@
                                     @endif
                                     
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8"> 
                                     <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
                                         @method('PATCH')
                                         @csrf

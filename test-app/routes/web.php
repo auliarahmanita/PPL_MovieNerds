@@ -4,7 +4,9 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TierController;
+use App\Http\Controllers\TaskArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,16 @@ Route::get('/tier', [TierController::class, 'index']);
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
+// Route::post('/create', [TaskArticleController::class, 'store']);
+Route::get('/create', [TaskArticleController::class, 'create']);
+
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', [TaskController::class, 'index'])->middleware('auth');
+
+Route::get('/dashboard/articles/slug', [TaskArticlesController::class, 'slug'])->middleware('auth');
+Route::resource('/dashboard/articles', TaskArticleController::class)->middleware('auth');
+
+Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');

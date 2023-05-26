@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function show(User $author)
     {
-        return view('articles', [
+        return view('articles.articles', [
             'active' => 'articles',
             'title' => "Posts By Author: $author->name",
             'articles' => $author->articles()->load('tag', 'author'),

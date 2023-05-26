@@ -32,7 +32,7 @@ class HomeController extends Controller
 
     public function show(Article $article)
     {
-        return view('article', [
+        return view('articles.article', [
             'active' => 'articles',
             "title" => "Single Article",
             "article" => $article, 

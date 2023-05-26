@@ -30,18 +30,19 @@
             @foreach ($articles->skip(1) as $article)            
             <div class="col-md-4 mb-5">
                 <div class="card">
-                    <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}"  class="card-img-top" alt="{{ $article->tag->name }}">
+                    <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="card-img-top" alt="{{ $article->tag->name }}">
                     <div class="position-absolute top-0 start-0 px-3 py-2 ">
                         <a href="/articles/?tag={{ $article->tag->slug }}" class="text-white text-decoration-none">{{ $article->tag->name }}</a>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">{{ $article->title }}</h2>
+                        <h2 class="card-title"><a href="/article/{{ $article->slug }}">{{ $article->title }}</a></h2>
                         <p>
                             <small class="text-muted">
                                 {{ $article->created_at->diffForHumans() }} <br>
                                 Ditulis oleh <a href="/articles/?author={{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a> 
                             </small>
                         </p>
+                        
                     </div>
                 </div>
             </div>

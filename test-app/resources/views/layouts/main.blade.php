@@ -68,7 +68,7 @@
               </a>
               </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/create">Buat Artikel</a>
+                  <a class="dropdown-item" href="/dashboard/articles">Buat Artikel</a>
                   <a class="dropdown-item" href="/profile">Profil</a>
                   <form action="" method="post">
                     @csrf

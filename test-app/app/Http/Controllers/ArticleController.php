@@ -22,7 +22,7 @@ class ArticleController extends Controller
             $title = ' by ' . $author->name;
         }
 
-        return view('articles', [
+        return view('articles.articles', [
             'active' => 'articles',
             "title" => "All Articles" . $title,
             "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
@@ -53,7 +53,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('article', [
+        return view('articles.article', [
             'active' => 'articles',
             "title" => "Single Article",
             "article" => $article,

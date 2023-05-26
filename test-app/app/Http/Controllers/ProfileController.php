@@ -14,7 +14,19 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::findOrFail(Auth::id());
-        return view('profile', compact('user'));
+        $articles = auth()->user()->articles()->latest()->get();
+        return view('user.profile', compact('user'), [
+            'articles' => $articles
+        ]);
+        
+    }
+
+    public function show()
+    {
+        $articles = auth()->user()->articles()->latest()->get(); // Error of intelephense
+        return view('user.profile', [
+            'articles' => $articles
+        ]);
     }
 
     public function update(Request $request, $id)
