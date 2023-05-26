@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegisterController;
@@ -68,3 +69,5 @@ Route::get('/dashboard/articles/slug', [TaskArticlesController::class, 'slug'])-
 Route::resource('/dashboard/articles', TaskArticleController::class)->middleware('auth');
 
 Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
