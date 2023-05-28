@@ -44,4 +44,12 @@ class Article extends Model
             $query->where('username', $author))
         );
     }
+
+    // Model Article
+
+public function comments()
+{
+    return $this->hasMany(Comment::class)->whereNull('parent_comment_id');
+}
+
 }

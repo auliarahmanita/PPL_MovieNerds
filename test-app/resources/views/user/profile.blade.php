@@ -26,29 +26,30 @@
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th> --}}
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">...</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($articles as $articles)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td>
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $articles->title }}
+                                    <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
+                                    <p>{{ $articles->created_at->diffForHumans() }}</p>
+                                    <p>{{ $user->username }}</p>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-indigo-800">{{ $articles->tag->name }}</span>
-                                </td>
+                                {{-- <td>
+                                    <span>{{ $articles->tag->name }}</span>
+                                </td> --}}
                                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium space-x-2">
-                                    <a href="/dashboard/articles/{{ $articles->slug }}" class="text-indigo-600 hover:text-indigo-900">Detail</a>
-                                    <a href="/dashboard/articles/{{ $articles->slug }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <form action="/dashboard/articles/{{ $articles->slug }}" class="inline-block" method="post">
+                                    <button><a href="/dashboard/articles/{{ $articles->slug }}/edit">Edit</a></button>
+                                    <form action="/dashboard/articles/{{ $articles->id}}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button onclick="return confirm('Are you sure to delete this post?')" class="text-red-600 hover:text-red-900">Delete</button>
+                                        <button onclick="return confirm('Are you sure to delete this post?')">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -56,9 +57,9 @@
                         </tbody>
                     </table>
 
-                    <button>
+                    {{-- <button>
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/dashboard/articles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Dashboard</a>
-                    </button>
+                    </button> --}}
                 </div>
 
                 <div>

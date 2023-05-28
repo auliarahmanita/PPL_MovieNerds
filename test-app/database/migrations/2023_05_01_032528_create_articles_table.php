@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('konten');
+            $table->string('gambar');
             $table->timestamp('diposting_pada')->nullable();
             $table->timestamps();
         });

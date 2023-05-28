@@ -33,7 +33,7 @@ class TaskArticleController extends Controller
             'slug'   => 'required|unique:articles',
             'tag_id'   => 'required|numeric',
             'excerpt'   => 'required',
-            'image' => 'required|image|file|max:1024',
+            'image' => 'image|file|max:1024',
             'konten'   => 'required'
         ]);
 
@@ -42,7 +42,7 @@ class TaskArticleController extends Controller
 
         Article::create($validatedData);
 
-        return redirect()->to('/profile')->with('success', 'New post has been created.');
+        return redirect('/profile')->with('success', 'New post has been created.');
     }
 
     public function show(Article $article)
@@ -85,14 +85,14 @@ class TaskArticleController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
 
         $article->where('id', $article->id)->update($validatedData);
-        return redirect()->to('/dashboard/articles')->with('success', 'Post has been updated.');
+        return redirect()->to('/profile')->with('success', 'Post has been updated.');
     }
 
     public function destroy(Article $article)
     {
         if ($article->image) Storage::delete($article->image);
         $article->delete();
-        return redirect()->to('/dashboard/articles')->with('success', 'Post has been deleted.');
+        return redirect()->to('/profile')->with('success', 'Post has been deleted.');
     }
 
     public function slug()
