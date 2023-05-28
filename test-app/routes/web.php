@@ -56,7 +56,7 @@ Route::get('/tier', [TierController::class, 'index']);
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
-// Route::post('/create', [TaskArticleController::class, 'store']);
+Route::post('/store', [TaskArticleController::class, 'store']);
 Route::get('/create', [TaskArticleController::class, 'create']);
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
@@ -65,9 +65,14 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [TaskController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard/articles/slug', [TaskArticlesController::class, 'slug'])->middleware('auth');
+Route::get('/dashboard/articles/slug', [TaskArticleController::class, 'slug'])->middleware('auth');
 Route::resource('/dashboard/articles', TaskArticleController::class)->middleware('auth');
 
-Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');
+Route::patch('/update/{article:slug}', [TaskArticleController::class, 'update'])->name('article.update');
+Route::get('/dashboard/articles/{article:slug}/edit', [TaskArticleController::class, 'edit']); 
+
+Route::delete('/dashboard/articles/{article:id}', [TaskArticleController::class, 'destroy'])->name('article.destroy'); 
+
+// Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
