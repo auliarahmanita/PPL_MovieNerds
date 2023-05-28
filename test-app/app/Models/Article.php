@@ -10,7 +10,7 @@ class Article extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
+// 
     protected $with = ['tag', 'author'];
 
     public function tag() {

@@ -39,6 +39,7 @@
                                             <div class="comment reply">
                                                 <p>{{ $reply->comment_text }}</p>
                                                 {{-- <p>By: {{ $reply->user->name }}</p> --}}
+                                                {{--  --}}
                                             </div>
                                         </li>
                                     @endforeach

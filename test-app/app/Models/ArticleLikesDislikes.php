@@ -15,6 +15,7 @@ class ArticleLikesDislikes extends Model
         'likes',
         'dislikes',
         // ffsfs
+        // 
     ];
 
     public function article()
