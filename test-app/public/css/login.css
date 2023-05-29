@@ -1,0 +1,318 @@
+/*  import google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+/* custom scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* all similar content styling codes */
+.my-width{
+    max-width: 1300px;
+    padding: 0 80px;
+    margin: auto;
+}
+
+/* navbar styling */
+.navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    padding: 10px 0;
+    font-family: 'Ubuntu', sans-serif;
+    transition: all 0.3s ease;
+    background: #000;
+    border-bottom: 1px solid #FFD233;
+}
+.navbar.sticky{
+    padding: 15px 0;
+    background: #FFD233;
+}
+.navbar .my-width{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo img{
+    width: 250px;
+    margin-top: 10px;
+}
+.navbar .logo a{
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+.navbar .logo a span{
+    color: crimson;
+    transition: all 0.3s ease;
+}
+.navbar.sticky .logo a span{
+    color: #fff;
+}
+.navbar .menu li{
+    list-style: none;
+    display: inline-block;
+}
+.navbar .menu li a{
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+.navbar .menu li a:hover{
+    color: #FFD233;
+}
+.navbar.sticky .menu li a:hover{
+    color: #fff;
+}
+/* Search Column */
+.menu .search-box input{
+    margin-left: 25px;
+    width: 250px;
+    height: 40px;
+    background: #505050;
+    border-radius: 50px;
+    color: white;
+    padding: 20px;
+}
+::placeholder{
+    color: #7C7C7C;
+}
+
+/* button sign up */
+.menu .btn-signup input{
+    width: 90px;
+    height: 40px;
+    background: #FFD233;
+    border-radius: 8px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+} 
+
+/* menu btn styling */
+.menu-btn{
+    color: #fff;
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+}
+
+/* Login section */
+section{
+    background-color: #383838;
+}
+/* .login-sec{
+    margin: auto;
+} */
+.login-sec .my-width{
+    max-width: 600px;
+    margin: auto;
+    padding-top: 180px;  
+}
+.judul-hal{
+    text-align: center;
+    color: white;
+    width: 600px;
+    margin-right: 2000px;
+    margin-left: -85px ;
+}
+.judul-hal .judul{
+    font-size: 48px;
+    font-weight: 700;
+
+}
+.judul-hal .slogan{
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 400;
+    /* width: 600px; */
+}
+.login-box{
+    margin-top: 65px;
+    display: flex;
+    justify-content: center;
+}
+.form-login{
+    display:block;
+    color: white;
+}
+.data-login{
+    display: block;
+    margin-bottom: 15px;
+}
+.data-login label{
+    font-size: 24px;
+    font-weight: 700;
+}
+.data-login input{
+    width: 600px;
+    height: 50px;
+    background: #888888;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    padding-left: 12px;
+    font-size: 14.5px;
+}
+.data-login p{
+    margin-top: 5px;
+    color: #9b9b9b;
+    font-size: 12px;
+}
+.data-login .text-forgot a{
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 400px;
+    display: flex;
+    float: right;
+    color: #FFD233;
+}
+.data-login .text-forgot p{
+    display: flex;
+    float: left;
+}
+.container-bawah{
+    margin-top: 50px;
+    height: 150px;
+}
+
+.remember-me label{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.btn-login{
+    margin-top: 10px;
+}
+
+.data-login .btn-login input{
+    background-color: #FFD233;
+    border: 0px;
+    font-weight: 700;
+    font-size: 24px;
+    color: black;
+}
+.data-login .non-akun{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.data-login .non-akun p{
+    color: white;
+}
+.data-login .non-akun a{
+    color: #FFD233;
+}
+
+/* footer */
+footer{
+    background-color: #505050;
+}
+footer .my-width{
+    width: 600px;
+    text-align: center;
+}
+.footer-box{
+    height: 140px;
+}
+.text-footer{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+.text-footer a{
+    color: white;
+}
+.text-footer .pemisah{
+    color: white;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.copyright{
+    margin-top: 15px;
+    color: #BEBEBE;
+}
+
+
+/* responsive media query start */
+@media (max-width: 1104px) {
+
+}
+
+@media (max-width: 991px) {
+    .my-width{
+        padding: 0 50px;
+    }
+}
+@media (max-width: 947px){
+    .menu-btn{
+        display: block;
+        z-index: 999;
+    }
+    .menu-btn i.active:before{
+        content: "\f00d";
+    }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+    .my-width{
+        max-width: 930px;
+    }
+}
+
+@media (max-width: 690px) {
+    .my-width{
+        padding: 0 23px;
+    }
+}
+
+@media (max-width: 500px) {
+
+}

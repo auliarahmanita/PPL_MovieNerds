@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <div class="row justify-content-center">
         <div class="col-md-5" >
             @if (session()->has('success'))
