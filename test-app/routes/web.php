@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TierController;
 use App\Http\Controllers\TaskArticleController;
+use App\Http\Controllers\AdminArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +74,8 @@ Route::get('/dashboard/articles/{article:slug}/edit', [TaskArticleController::cl
 
 Route::delete('/dashboard/articles/{article:id}', [TaskArticleController::class, 'destroy'])->name('article.destroy'); 
 
-// Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');
+Route::resource('/admin/review_list', AdminArticleController::class)->middleware('admin');
+Route::post('/admin/review/{article:slug}/update', [AdminArticleController::class, 'update'])->name('admin.review.update');
+
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');

@@ -69,19 +69,16 @@
               </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/create">Buat Artikel</a>
+                  
+                  @can('admin')
+                  <a href="/admin/review">Review Article</a>
+                  @endcan
+
                   <a class="dropdown-item" href="/profile">Profil</a>
                   <form action="" method="post">
                     @csrf
                     <a href="/logout">Logout</a>
                   </form>
-                  {{-- <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                  </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                  </form> --}}
                 </div>
             </li>
           @endguest

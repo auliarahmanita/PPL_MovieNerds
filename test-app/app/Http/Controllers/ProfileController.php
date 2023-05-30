@@ -37,7 +37,8 @@ class ProfileController extends Controller
             'email'     => 'required|email|unique:users,email, ' . $id . ',id',
             'old_password' => 'nullable|string',
             'password' => 'nullable|required_with:old_password|string|confirmed|min:6',
-            'bio'       => 'nullable|string|min:2|max:100'
+            'bio'       => 'nullable|string|min:2|max:100',
+            'photo'     => 'nullable|image|file|max:1024|'
         ]);
     
         $user = User::find($id);
@@ -60,13 +61,13 @@ class ProfileController extends Controller
         }
     
         if (request()->hasFile('photo')) {
-            if($user->photo && file_exists(storage_path('app/public/photos/' . $user->photo))){
-                Storage::delete('app/public/photos/'.$user->photo);
+            if($user->photo && file_exists(storage_path('public/storage/photos/' . $user->photo))){
+                Storage::delete('public/storage/photos/'.$user->photo);
             }
     
             $file = $request->file('photo');
             $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
-            $request->photo->move(storage_path('app/public/photos'), $fileName);
+            $request->photo->move(storage_path('public/storage/photos'), $fileName);
             $user->photo = $fileName;
         }
     
