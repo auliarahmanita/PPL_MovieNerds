@@ -50,7 +50,7 @@ class ArticleController extends Controller
                 ->paginate(7)->withQueryString(),
         ]);
     }
-
+// 
     public function show(Article $article)
     {
         return view('articles.article', [

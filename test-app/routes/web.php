@@ -79,3 +79,4 @@ Route::post('/admin/review/{article:slug}/update', [AdminArticleController::clas
 
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+// 
