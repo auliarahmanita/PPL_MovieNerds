@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2023 at 12:08 PM
+-- Generation Time: May 31, 2023 at 12:50 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -59,6 +59,27 @@ INSERT INTO `articles` (`id`, `tag_id`, `user_id`, `title`, `slug`, `excerpt`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `article_likes_dislikes`
+--
+
+CREATE TABLE `article_likes_dislikes` (
+  `article_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `likes` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `dislikes` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `article_likes_dislikes`
+--
+
+INSERT INTO `article_likes_dislikes` (`article_id`, `id`, `likes`, `dislikes`) VALUES
+(1, 1685289584, 6, 1),
+(4, 1685529558, 1, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `comments`
 --
 
@@ -83,7 +104,8 @@ INSERT INTO `comments` (`id`, `article_id`, `parent_comment_id`, `user_id`, `com
 (5, 1, 2, NULL, 'reply ini', '2023-05-26 02:55:14'),
 (6, 3, NULL, NULL, 'test ini', '2023-05-26 02:58:00'),
 (7, 3, 6, NULL, 'reply', '2023-05-26 02:58:10'),
-(8, 3, NULL, NULL, 'tes paret lagi', '2023-05-26 02:58:18');
+(8, 3, NULL, NULL, 'tes paret lagi', '2023-05-26 02:58:18'),
+(9, 2, NULL, NULL, 'test', '2023-05-31 03:25:52');
 
 -- --------------------------------------------------------
 
@@ -285,6 +307,12 @@ ALTER TABLE `articles`
   ADD UNIQUE KEY `articles_slug_unique` (`slug`);
 
 --
+-- Indexes for table `article_likes_dislikes`
+--
+ALTER TABLE `article_likes_dislikes`
+  ADD PRIMARY KEY (`article_id`,`id`);
+
+--
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
@@ -362,7 +390,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -409,6 +437,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `article_likes_dislikes`
+--
+ALTER TABLE `article_likes_dislikes`
+  ADD CONSTRAINT `article_likes_dislikes_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `comments`
