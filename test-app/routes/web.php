@@ -47,7 +47,14 @@ Route::get('/about', function () {
 
 
 Route::get('/home', [ArticleController::class, 'home']);
-Route::get('/articles', [ArticleController::class, 'index']);
+
+// Route::get('/articles', [ArticleController::class, 'index']);
+// Route::get('/api/articles', [ArticleController::class, 'index']);
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/articles', [ArticleController::class, 'index']);
+});
+
+
 Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
 Route::get('/tags', [TagController::class, 'index']);

@@ -50,7 +50,7 @@
         </div>
         <div>
             <button type="button">
-                <a href="/articles">Index Artikel</a>
+                <a href="/api/articles">Index Artikel</a>
             </button>
         </div>
     </div>

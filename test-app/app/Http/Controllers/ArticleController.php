@@ -11,54 +11,50 @@ use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
+    
     public function index()
-    {
-        $title = '';
-        if (request('tag')) {
-            $tag = Tag::FirstWhere('slug', request('tag'));
-            $title = ' in ' . $tag->name;
-        }
-
-        if (request('author')) {
-            $author = User::FirstWhere('username', request('author'));
-            $title = ' by ' . $author->name;
-        }
-
-        return view('articles.articles', [
-            'active' => 'articles',
-            "title" => "All Articles" . $title,
-            "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-                ->paginate(7)->withQueryString(),
-        ]);
+{
+    $title = '';
+    if (request('tag')) {
+        $tag = Tag::firstWhere('slug', request('tag'));
+        $title = ' in ' . $tag->name;
     }
 
+    if (request('author')) {
+        $author = User::firstWhere('username', request('author'));
+        $title = ' by ' . $author->name;
+    }
+
+    $articles = Article::latest()->filter(request(['search', 'tag', 'author']))
+                ->paginate(7)->withQueryString();
+
+    return view('articles.articles', [
+        'active' => 'articles',
+        'title' => 'All Articles' . $title,
+        'articles' => $articles
+    ]);
+}
+
+
+    
     // public function index()
     // {
     //     $title = '';
-
     //     if (request('tag')) {
-    //         $tag = Tag::firstWhere('slug', request('tag'));
+    //         $tag = Tag::FirstWhere('slug', request('tag'));
     //         $title = ' in ' . $tag->name;
     //     }
 
     //     if (request('author')) {
-    //         $author = User::firstWhere('username', request('author'));
+    //         $author = User::FirstWhere('username', request('author'));
     //         $title = ' by ' . $author->name;
     //     }
 
-    //     $response = Http::get('http://movienerds/api/articles', [
-    //         'search' => request('search'),
-    //         'tag' => request('tag'),
-    //         'author' => request('author')
-    //     ]);
-
-    //     $articles = Article::where('reviewed', 1)->get();
-
-    //     $articles = $response->json();
-
     //     return view('articles.articles', [
-    //         'title' => 'All Articles' . $title,
-    //         'articles' => $articles,
+    //         'active' => 'articles',
+    //         "title" => "All Articles" . $title,
+    //         "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
+    //             ->paginate(7)->withQueryString(),
     //     ]);
     // }
 
