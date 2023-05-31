@@ -24,26 +24,34 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">...</th>
+                                {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th> --}}
+                                <th scope="col">Artikel</th>
+                                <th scope="col">Status Publikasi</th>
+                                <th scope="col">...</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($articles as $articles)
+                        @foreach($articles as $articles)
+                        @if ($articles->user_id === auth()->user()->id)
                             <tr>
-                                <td>
+                                {{-- <td>
                                     {{ $loop->iteration }}
-                                </td>
-                                <td class="px-6 py-4">
+                                </td> --}}
+                                <td>
                                     <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
                                     <p>{{ $articles->created_at->diffForHumans() }}</p>
-                                    <p>{{ $user->username }}</p>
+                                    <p>{{ $articles->author->username }}</p>
                                 </td>
-                                {{-- <td>
-                                    <span>{{ $articles->tag->name }}</span>
-                                </td> --}}
-                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium space-x-2">
+                                <td>
+                                    <p>
+                                        @if ($articles->reviewed)
+                                            Terpublikasi
+                                        @else
+                                            Dalam Proses Pengecekan
+                                        @endif
+                                    </p>
+                                </td>
+                                <td>
                                     <button><a href="/dashboard/articles/{{ $articles->slug }}/edit">Edit</a></button>
                                     <form action="/dashboard/articles/{{ $articles->id}}" method="POST">
                                         @method('DELETE')
@@ -51,8 +59,18 @@
                                         <button onclick="return confirm('Are you sure to delete this post?')">Hapus</button>
                                     </form>
                                 </td>
-                            </tr>
+                                {{-- @foreach
+                                    @if ($articles->reviewed)
+                                        <td class="px-6 py-4">
+                                            <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
+                                            <p>{{ $articles->created_at->diffForHumans() }}</p>
+                                            <p>{{ $user->username }}</p>
+                                        </td>
+                                    @endif
+                                @endforeach --}}
+                            @endif
                             @endforeach
+                            </tr>
                         </tbody>
                     </table>
 

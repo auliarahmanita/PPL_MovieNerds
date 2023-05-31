@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +15,17 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::findOrFail(Auth::id());
-        $articles = auth()->user()->articles()->latest()->get();
+        // $articles = auth()->user()->articles()->latest()->get();
+
+        $reviewedArticles = Article::where('reviewed', 1);
+        $userArticles = Auth::user()->articles()->latest();
+
+        $articles = Article::query()
+        ->select('*')
+        ->fromSub($reviewedArticles->union($userArticles), 'articles')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        
         return view('user.profile', compact('user'), [
             'articles' => $articles
         ]);
@@ -23,7 +34,18 @@ class ProfileController extends Controller
 
     public function show()
     {
-        $articles = auth()->user()->articles()->latest()->get(); // Error of intelephense
+        // $articles = Article::where('reviewed', 1)
+        // ->auth()->user()->articles()->latest()->get(); // Error of intelephense
+
+        $reviewedArticles = Article::where('reviewed', 1);
+        $userArticles = Auth::user()->articles()->latest();
+
+        $articles = Article::query()
+        ->select('*')
+        ->fromSub($reviewedArticles->union($userArticles), 'articles')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
         return view('user.profile', [
             'articles' => $articles
         ]);
@@ -45,7 +67,7 @@ class ProfileController extends Controller
     
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->email = $request->email;
+        $user->email = $request->email; 
         $user->bio = $request->bio;
     
         if ($request->filled('old_password')) {
