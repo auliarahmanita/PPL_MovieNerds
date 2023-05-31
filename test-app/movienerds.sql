@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 31, 2023 at 05:55 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.25
+-- Host: 127.0.0.1
+-- Generation Time: May 31, 2023 at 08:48 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,7 +74,8 @@ CREATE TABLE `article_likes_dislikes` (
 --
 
 INSERT INTO `article_likes_dislikes` (`article_id`, `id`, `likes`, `dislikes`) VALUES
-(5, 1685539002, 1, 0);
+(5, 1685539002, 1, 0),
+(3, 1685548826, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ INSERT INTO `comments` (`id`, `article_id`, `parent_comment_id`, `user_id`, `com
 (5, 1, 2, NULL, 'reply ini', '2023-05-26 02:55:14'),
 (6, 3, NULL, NULL, 'test ini', '2023-05-26 02:58:00'),
 (7, 3, 6, NULL, 'reply', '2023-05-26 02:58:10'),
-(8, 3, NULL, NULL, 'tes paret lagi', '2023-05-26 02:58:18');
+(8, 3, NULL, NULL, 'tes paret lagi', '2023-05-26 02:58:18'),
+(9, 8, NULL, NULL, 'Test', '2023-05-31 09:00:41');
 
 -- --------------------------------------------------------
 
@@ -192,6 +194,50 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `username`, `content`, `created_at`, `updated_at`) VALUES
+(1, 'Andre', 'aku suka john wick', '2023-05-31 11:44:30', '2023-05-31 11:44:30'),
+(2, 'anonymous', 'aku suka power ranger', '2023-05-31 11:44:49', '2023-05-31 11:44:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `replies`
+--
+
+CREATE TABLE `replies` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `replies`
+--
+
+INSERT INTO `replies` (`id`, `post_id`, `username`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, 'anna', 'aku juga suka johnwick', '2023-05-31 11:45:13', '2023-05-31 11:45:13');
 
 -- --------------------------------------------------------
 
@@ -351,6 +397,19 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `replies`
+--
+ALTER TABLE `replies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_id` (`post_id`);
+
+--
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
@@ -386,7 +445,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -411,6 +470,18 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `replies`
+--
+ALTER TABLE `replies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -441,6 +512,12 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `article_id` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`),
   ADD CONSTRAINT `parent_comment_id` FOREIGN KEY (`parent_comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `replies`
+--
+ALTER TABLE `replies`
+  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
