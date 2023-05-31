@@ -16,6 +16,26 @@
                     {!! $article['konten'] !!}
                 </div>
         </article>
+        <div class="like-dislike-section">
+            @php
+                $articleLikesDislikes = \App\Models\ArticleLikesDislikes::where('article_id', $article->id)->first();
+                $likes = $articleLikesDislikes ? $articleLikesDislikes->likes : 0;
+                $dislikes = $articleLikesDislikes ? $articleLikesDislikes->dislikes : 0;
+            @endphp
+        
+            <form action="{{ route('articles.like', $article) }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-success">Like</button>
+            </form>
+            <span class="like-count">{{ $likes }}</span>
+            
+            <form action="{{ route('articles.dislike', $article) }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-danger">Dislike</button>
+            </form>
+            <span class="dislike-count">{{ $dislikes }}</span>
+        </div>
+        
             <div class="comments-section">
                 <h2>Comments</h2>
                 <div class="comment-form">

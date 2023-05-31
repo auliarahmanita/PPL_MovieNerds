@@ -81,3 +81,6 @@ Route::get('/admin/review/{id}', [AdminArticleController::class, 'reviewArticle'
 Route::patch('/admin/review/{article:id}/update', [AdminArticleController::class, 'update'])->name('admin.review.update');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::post('/articles/{article}/like', [ArticleController::class, 'like'])->name('articles.like');
+Route::post('/articles/{article}/dislike', [ArticleController::class, 'dislike'])->name('articles.dislike');

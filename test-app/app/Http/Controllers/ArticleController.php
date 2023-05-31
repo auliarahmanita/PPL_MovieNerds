@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleLikesDislikes;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -87,5 +88,25 @@ class ArticleController extends Controller
             "title" => "Single Article",
             "article" => $article,
         ]);
+    }
+
+    public function like(Article $article)
+    {
+        $articleLikesDislikes = ArticleLikesDislikes::firstOrNew(['article_id' => $article->id]);
+
+        $articleLikesDislikes->likes++;
+        $articleLikesDislikes->save();
+
+        return redirect()->back();
+    }
+
+    public function dislike(Article $article)
+    {
+        $articleLikesDislikes = ArticleLikesDislikes::firstOrNew(['article_id' => $article->id]);
+
+        $articleLikesDislikes->dislikes++;
+        $articleLikesDislikes->save();
+
+        return redirect()->back();
     }
 }
