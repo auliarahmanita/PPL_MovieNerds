@@ -74,9 +74,9 @@ Route::get('/dashboard/articles/{article:slug}/edit', [TaskArticleController::cl
 
 Route::delete('/dashboard/articles/{article:id}', [TaskArticleController::class, 'destroy'])->name('article.destroy'); 
 
-Route::resource('/admin/review_list', AdminArticleController::class)->middleware('admin');
-Route::post('/admin/review/{article:slug}/update', [AdminArticleController::class, 'update'])->name('admin.review.update');
-
+// Route::resource('/admin/review_list', AdminArticleController::class, 'review')->middleware('admin');
+Route::get('/admin/review-list', [AdminArticleController::class, 'reviewList'])->name('admin.review.list');
+Route::get('/admin/review/{id}', [AdminArticleController::class, 'reviewArticle'])->name('admin.review.article');
+Route::patch('/admin/review/{article:id}/update', [AdminArticleController::class, 'update'])->name('admin.review.update');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-// 

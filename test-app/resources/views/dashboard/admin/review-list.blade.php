@@ -17,9 +17,9 @@
                 @foreach ($articles as $article)
                     <tr>
                         <td>{{ $article->title }}</td>
-                        <td>{{ $article->author }}</td>
+                        <td>{{ $article->author->username }}</td>
                         <td>
-                            <a href="{{ route('admin.review.post', $article->id) }}">Review</a>
+                            <a href="{{ route('admin.review.article', $article->id) }}">Review</a>
                         </td>
                     </tr>
                 @endforeach

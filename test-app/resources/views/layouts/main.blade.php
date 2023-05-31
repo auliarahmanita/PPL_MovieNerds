@@ -71,7 +71,7 @@
                   <a class="dropdown-item" href="/create">Buat Artikel</a>
                   
                   @can('admin')
-                  <a href="/admin/review">Review Article</a>
+                  <a href="/admin/review-list">Review Article</a>
                   @endcan
 
                   <a class="dropdown-item" href="/profile">Profil</a>

@@ -63,12 +63,6 @@
     const titleInput = document.getElementById('title');
     const slugInput = document.getElementById('slug');
 
-    // title.addEventListener('input', async function() {
-    //     const res = await fetch(`/dashboard/articles/slug?${new URLSearchParams({title: this.value}).toString()}`);
-    //     const data = await res.json();
-    //     slug.value = data.slug;
-    // });
-
     titleInput.addEventListener('input', function() {
         const title = this.value;
         const slug = slugify(title);

@@ -11,9 +11,9 @@ class AdminArticleController extends Controller
     public function reviewList()
     {
         // Ambil daftar posting yang perlu direview (status review = 0)
-        $article = Article::where('status', 0)->get();
+        $articles = Article::where('reviewed', 0)->get();
 
-        return view('admin.review-list', compact('articles'));
+        return view('dashboard.admin.review-list', compact('articles'));
     }
 
     public function reviewArticle($id)
@@ -21,7 +21,7 @@ class AdminArticleController extends Controller
         // Ambil posting tertentu untuk direview oleh admin
         $article = Article::findOrFail($id);
 
-        return view('admin.review-article', compact('article'));
+        return view('dashboard.admin.review-article', compact('article'));
     }
 
     public function update(Request $request, Article $article)
@@ -35,14 +35,14 @@ class AdminArticleController extends Controller
         $article->status = $request->input('status');
         $article->save();
 
-        return redirect()->route('admin.review.list')->with('success', 'Post review updated successfully');
+        return redirect()->route('admin.review.list')->with('success', 'Article review updated successfully');
     }
 
     public function publicArticles()
     {
         // Ambil posting yang telah direview dan disetujui (status review = 1)
-        $article = Article::where('status', 1)->get();
+        $articles = Article::where('status', 1)->get();
 
-        return view('public.posts', compact('articles'));
+        return view('dashboard.admin.publics', compact('articles'));
     }
 }
