@@ -9,6 +9,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TierController;
 use App\Http\Controllers\TaskArticleController;
 use App\Http\Controllers\AdminArticleController;
+use App\Http\Controllers\DiscussionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,3 +92,10 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 
 Route::post('/articles/{article}/like', [ArticleController::class, 'like'])->name('articles.like');
 Route::post('/articles/{article}/dislike', [ArticleController::class, 'dislike'])->name('articles.dislike');
+
+// Discussion
+Route::get('/discussion', [DiscussionController::class, 'index'])->name('discussion');
+Route::post('/create-post', [DiscussionController::class, 'createPost'])->name('create.post');
+Route::post('/create-reply/{postId}', [DiscussionController::class, 'createReply'])->name('create.reply');
+
+
