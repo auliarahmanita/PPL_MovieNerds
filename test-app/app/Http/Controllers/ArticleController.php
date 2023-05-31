@@ -11,27 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
-    // public function index()
-    // {
-    //     $title = '';
-    //     if (request('tag')) {
-    //         $tag = Tag::FirstWhere('slug', request('tag'));
-    //         $title = ' in ' . $tag->name;
-    //     }
-
-    //     if (request('author')) {
-    //         $author = User::FirstWhere('username', request('author'));
-    //         $title = ' by ' . $author->name;
-    //     }
-
-    //     return view('articles.articles', [
-    //         'active' => 'articles',
-    //         "title" => "All Articles" . $title,
-    //         "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-    //             ->paginate(7)->withQueryString(),
-    //     ]);
-    // }
-
     public function index()
     {
         $title = '';
@@ -51,6 +30,8 @@ class ArticleController extends Controller
             'tag' => request('tag'),
             'author' => request('author')
         ]);
+
+        $articles = Article::where('reviewed', 1)->get();
 
         $articles = $response->json();
 
@@ -76,13 +57,17 @@ class ArticleController extends Controller
         return view('home', [
             'active' => 'articles',
             "title" => "MovieNerds" . $title,
-            "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-                ->paginate(7)->withQueryString(),
+            "articles" => Article::where('reviewed', 1) // Hanya mengambil artikel dengan status review 1
+            ->latest()
+            ->filter(request(['search', 'tag', 'author']))
+            ->paginate(7)
+            ->withQueryString(),     
         ]);
     }
 // 
     public function show(Article $article)
     {
+
         return view('articles.article', [
             'active' => 'articles',
             "title" => "Single Article",

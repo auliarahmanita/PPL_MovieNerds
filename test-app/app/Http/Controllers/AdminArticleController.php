@@ -28,11 +28,11 @@ class AdminArticleController extends Controller
     {
         // Validasi input pengguna
         $validatedData = $request->validate([
-            'status' => 'required|in:1,-1', // 1 untuk disetujui, -1 untuk ditolak
+            'reviewed' => 'required|in:1,-1', // 1 untuk disetujui, -1 untuk ditolak
         ]);
 
         $article = Article::findOrFail($article->id);
-        $article->status = $request->input('status');
+        $article->reviewed = $request->input('reviewed');
         $article->save();
 
         return redirect()->route('admin.review.list')->with('success', 'Article review updated successfully');
@@ -41,7 +41,7 @@ class AdminArticleController extends Controller
     public function publicArticles()
     {
         // Ambil posting yang telah direview dan disetujui (status review = 1)
-        $articles = Article::where('status', 1)->get();
+        $articles = Article::where('reviewed', 1)->get();
 
         return view('dashboard.admin.publics', compact('articles'));
     }
