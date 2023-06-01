@@ -4,85 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>MovieNerds</title>
 </head>
 <body>
-    <nav>
-        <a href="/">Movie Nerds</a>
-        <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span></span>
-        </button>
-        <div>
-          <ul>
-            <li>
-              <a href="/home">Beranda</a>
-            </li>
-            <li>
-              <a href="/discussion">Diskusi</a>
-            </li>
-            <li>
-              <a href="/tier">Peringkat</a>
-            </li>
-            {{-- <li class="nav-item">
-              <a class="nav-link" href="/tags">Tag</a>
-            </li> --}}
-            <li class="nav-item">
-                <a class="nav-link" href="/about">Tentang Kami</a>
-            </li>
-          </ul>
-        </div>
-        <div class="row justify-content-center mb-3">
-          <div class="col-md-6">
+
+  <nav class="navbar">
+    <div class="my-width">
+        <div class="logo">
+            <a href="/home"><img src="img/logo-longversion.jpg" alt=""></a></div>
+        <ul class="menu">
+            <li><a href="/home" class="menu-btn">Beranda</a></li>
+            <li><a href="/discussion" class="menu-btn">Discussion</a></li>
+            <li><a href="/tier" class="menu-btn">Peringkat</a></li>
+            <li><a href="/about" class="menu-btn">About Us</a></li>
+            <li class="search-box">
+
               <form action="/articles">
-                  @if (request('tag'))
-                      <input type="hidden" name="tag" value="{{ request('tag') }}">
-                  @endif
-                  @if (request('author'))
-                      <input type="hidden" name="author" value="{{ request('author') }}">
-                  @endif  
-                  <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request('search') }}">
-                      <button class="btn btn-danger" type="submit" >Search</button>
-                  </div>
-              </form>
-          </div>
-        </div>
-
-        <ul class="navbar-nav ml-auto">
-          <!-- Authentication Links -->
-          @guest
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-          @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-          @endif
-          
-          @else
-            <li class="nav-item dropdown">
-              <button>
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-              </a>
-              </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/create">Buat Artikel</a>
-                  
-                  @can('admin')
-                  <a href="/admin/review-list">Review Article</a>
-                  @endcan
-
-                  <a class="dropdown-item" href="/profile">Profil</a>
-                  <form action="" method="post">
-                    @csrf
-                    <a href="/logout">Logout</a>
-                  </form>
+                @if (request('tag'))
+                    <input type="hidden" name="tag" value="{{ request('tag') }}">
+                @endif
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif  
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Here..." name="search" value="{{ request('search') }}">
+                    <button class="btn-search" type="submit" >Search</button>
                 </div>
-            </li>
-          @endguest
-      </nav>
+            </form>
+            </li>  
+
+            <li>
+              <div class="hamburger-menu" onclick="toggleDropdown()">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+              </div>
+              <!-- Dropdown menu -->
+              <div class="dropdown" id="dropdown-menu">
+                  @guest
+                    <a href="{{ route('login') }}">Login</a>
+                    @if (Route::has('register'))
+                      <a href="{{ route('register') }}">Register</a>
+                    @endif
+                  @else
+                    <a href="/create">Buat Artikel</a>
+          
+                    @can('admin')
+                    <a href="/admin/review-list">Review Article</a>
+                    @endcan
+          
+                    <a href="/profile">Profil</a>
+                    <form action="" method="post">
+                      @csrf
+                      <a href="/logout">Logout</a>
+                    </form>
+                  @endguest
+              </div>
+          </li>
+
+
+            {{-- <li>
+              <div class="hamburger-menu" onclick="toggleDropdown()">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+              </div>
+              <!-- Dropdown menu -->
+              <div class="dropdown" id="dropdown-menu">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+              </div>
+          </li> --}}
+        </ul>
+    </div>
+</nav>
 </body>
 
 <footer>
@@ -98,6 +95,13 @@
     </li>
   </ul>
 </footer>
+
+<script>
+  function toggleDropdown() {
+      var dropdownMenu = document.getElementById("dropdown-menu");
+      dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+  }
+</script>
 
 <div class="container">
   @yield('container')
