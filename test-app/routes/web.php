@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/', function () {
+Route::get('/landing', function () {
     $strHome = 'landing';
     return view('landing', [
         'active' => "$strHome",
