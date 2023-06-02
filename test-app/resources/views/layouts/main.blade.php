@@ -20,7 +20,7 @@
             <li><a href="/about" class="menu-btn">About Us</a></li>
             <li class="search-box">
 
-              <form action="/articles">
+              <form action="/api/articles">
                 @if (request('tag'))
                     <input type="hidden" name="tag" value="{{ request('tag') }}">
                 @endif

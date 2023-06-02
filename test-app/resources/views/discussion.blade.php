@@ -9,6 +9,7 @@
 
     <h1>Discussion</h1>
 
+    @auth
     <h2>Create Post</h2>
     <form action="{{ route('create.post') }}" method="post">
         @csrf
@@ -20,6 +21,7 @@
         <br>
         <input type="submit" value="Create Post">
     </form>
+    @endauth
 
     <hr>
 
@@ -42,6 +44,7 @@
 
             <hr>
 
+            @auth
             <h5>Reply</h5>
             <form action="{{ route('create.reply', $post->id) }}" method="post">
                 @csrf
@@ -53,6 +56,7 @@
                 <br>
                 <input type="submit" value="Reply">
             </form>
+            @endauth
         </div>
     @endforeach
 @endsection

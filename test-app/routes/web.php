@@ -35,6 +35,14 @@ Route::get('/landing', function () {
     ]);
 });
 
+Route::get('/', function () {
+    $strHome = 'landing';
+    return view('landing', [
+        'active' => "$strHome",
+        'title' => 'Landing',
+    ]);
+});
+
 Route::get('/about', function () {
         return view('about', [
             'active' => 'about',
@@ -53,12 +61,14 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/articles', [ArticleController::class, 'index']);
 });
 
-Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
+// Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
 Route::get('/tags', [TagController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/tier', [TierController::class, 'index']);
+
+Route::get('/articles/search',  [ArticleController::class, 'search'])->name('search');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');

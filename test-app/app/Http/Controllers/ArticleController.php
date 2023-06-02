@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
-    
     public function index()
 {
     $title = '';
@@ -33,10 +32,7 @@ class ArticleController extends Controller
         'title' => 'All Articles' . $title,
         'articles' => $articles
     ]);
-}
-
-
-    
+}   
     // public function index()
     // {
     //     $title = '';

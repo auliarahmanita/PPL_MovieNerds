@@ -19,6 +19,7 @@
                 
             @endif    
             
+            <br><br><br>
             <main class="form-signin">
                 <form action="/login" method="POST">
                     @csrf

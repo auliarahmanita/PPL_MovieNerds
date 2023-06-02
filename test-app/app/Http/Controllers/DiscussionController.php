@@ -35,7 +35,7 @@ class DiscussionController extends Controller
     {
         $request->validate([
             'content' => 'required',
-        ]);
+        ]); 
 
         $username = $request->input('username') ?? 'anonymous';
 
