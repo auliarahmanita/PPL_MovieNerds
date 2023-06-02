@@ -17,9 +17,9 @@
                 <div class="row">
                     <div class="col-md-4">
                         @if($user->photo)
-                            <img src="{{ asset('storage/photos/'.$user->photo) }}" class="img-thumbnail rounded mx-auto d-block">
+                            <img src="{{ 'public/storage/photos/'.$user->photo }}">
                         @else
-                            <img src="{{ asset('img/profile.png') }}" class="img-thumbnail rounded mx-auto d-block">
+                            <img src="img/profile.jpeg">
                         @endif
                         
                     </div>

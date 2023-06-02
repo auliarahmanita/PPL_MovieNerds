@@ -34,14 +34,14 @@ class TaskArticleController extends Controller
             'slug'   => 'required|unique:articles',
             'tag_id'   => 'required|numeric',
             'excerpt'   => 'required',
-            'image' => 'image|file|max:1024',
+            'photo' => 'nullable|image|file|max:1024',
             'konten'   => 'required'
         ]);
 
         auth()->user()->increment('exp', 10);
         $this->updateTier(auth()->user());
 
-        $validatedData['image'] = $request->file('image')->store('article-images');
+        $validatedData['photo'] = $request->file('photo')->store('article-images');
         $validatedData['user_id'] = auth()->user()->id;
 
         Article::create($validatedData);
@@ -91,10 +91,21 @@ class TaskArticleController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($request->file('image')) {
-            if ($request->article('old-image')) Storage::delete($request->post('old-image'));
-            $validatedData['image'] = $request->file('image')->store('post-images');
+        if (request()->file('photo')) {
+            if($article->photo && file_exists(public_path('storage/photo/' . $article->photo))){
+                Storage::delete('storage/photo/'.$article->photo);
+            }
+    
+            $file = $request->file('photo');
+            $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
+            $request->photo->move(public_path('public/storage/photo'), $fileName);
+            $article->photo = $fileName;
         }
+    
+        // if ($request->file('image')) {
+        //     if ($request->article('old-image')) Storage::delete($request->post('old-image'));
+        //     $validatedData['image'] = $request->file('image')->store('post-images');
+        // }
 
         $validatedData['user_id'] = auth()->user()->id;
 
@@ -104,7 +115,7 @@ class TaskArticleController extends Controller
 
     public function destroy(Article $article)
     {
-        if ($article->image) Storage::delete($article->image);
+        if ($article->photo) Storage::delete($article->photo);
         $article->delete();
         return redirect()->to('/profile')->with('success', 'Post has been deleted.');
     }

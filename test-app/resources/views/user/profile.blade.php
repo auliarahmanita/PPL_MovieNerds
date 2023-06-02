@@ -11,11 +11,11 @@
                     </div>
                 @endif
                 <div class="col-md-4">
-                    @if($user->photo)
-                        <img src="{{ asset('storage/photos/'.$user->photo) }}" class="img-thumbnail rounded mx-auto d-block">
-                    @else
-                        <img src="{{ asset('storage/photos/profile.jpeg') }}" class="img-thumbnail rounded mx-auto d-block">
-                    @endif
+                @if($user->photo)
+                    <img src="{{ 'public/storage/photos/'.$user->photo }}">
+                @else
+                    <img src="img/profile.jpeg">
+                @endif
                 </div>
                 <h1 class="mb-5">{{$user->username}}</h1>
                 <p class="mb-5">{{$user->bio}}</p>

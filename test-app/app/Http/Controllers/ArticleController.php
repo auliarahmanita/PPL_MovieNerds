@@ -58,7 +58,7 @@ class ArticleController extends Controller
 
         $popularArticles = Article::select('articles.*', DB::raw('COALESCE(SUM(article_likes_dislikes.likes), 0) as likes_count'))
             ->leftJoin('article_likes_dislikes', 'article_likes_dislikes.article_id', '=', 'articles.id')
-            ->groupBy('articles.id','articles.tag_id', 'articles.user_id', 'articles.title', 'articles.slug', 'articles.excerpt', 'articles.konten', 'articles.diposting_pada', 'articles.created_at', 'articles.updated_at', 'articles.reviewed')
+            ->groupBy('articles.id','articles.tag_id', 'articles.user_id', 'articles.title', 'articles.slug', 'articles.excerpt', 'articles.konten', 'articles.diposting_pada', 'articles.created_at', 'articles.updated_at', 'articles.reviewed', 'articles.photo')
             ->orderByDesc('likes_count')
             ->take(8)
             ->paginate(7)

@@ -6,8 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-5">{{ $article->title }}</h1>
-            <p>By. <a href="/articles/?author={{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a> in <a href="/articles/?tag={{ $article->tag->slug }}" class="text-decoration-none">{{ $article->tag->name }}</a></p>
-            <img src="https://source.unsplash.com/1200x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
+            <p>By. <a href="/api/articles?author={{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a> in <a href="/api/articles?tag={{ $article->tag->slug }}" class="text-decoration-none">{{ $article->tag->name }}</a></p>
+            
+                @if($article->photo)
+                    <img src="{{ 'public/storage/photo/'.$article->photo }}">
+                @else
+                    <img src="https://source.unsplash.com/1200x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
+                @endif
+        
             {{-- <article class="my-3">
                 {!! $article->konten !!}
             </article> --}}

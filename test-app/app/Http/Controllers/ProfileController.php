@@ -102,7 +102,7 @@ class ProfileController extends Controller
     
             $file = $request->file('photo');
             $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
-            $request->photo->move(public_path('public/storage/photos'), $fileName);
+            $request->photo->move(public_path('storage/photos'), $fileName);
             $user->photo = $fileName;
         }
     
