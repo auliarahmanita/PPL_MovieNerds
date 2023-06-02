@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
     <title>MovieNerds</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
             <li><a href="/about" class="menu-btn">About Us</a></li>
             <li class="search-box">
 
-              <form action="/api/articles">
+              <form action="/articles">
                 @if (request('tag'))
                     <input type="hidden" name="tag" value="{{ request('tag') }}">
                 @endif
@@ -91,6 +91,7 @@
 <div class="container">
   @yield('container')
 </div>
+
 <footer>
   <div class="my-width">
       <div class="footer-box">

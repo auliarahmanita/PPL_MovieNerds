@@ -2,25 +2,28 @@
 
 @section('container')
     {{-- <h1>Halaman Tier</h1> --}}
-    <h1 class="mb-5">{{ $title }}</h1>
+    <h1>Leaderboard</h1>
         <div class="container">
             <div class="row">
                 <table>
                     <tr>
-                        <th>Tier</th>
+                        <th>Peringkat</th>
                         <th>Name</th>
-                        <th>Exp</th>
+                        <th>Poin</th>
+                        <th>Tingkat</th>
+
                     </tr>
-                    @foreach ($tier as $tier_user)
+                    @foreach ($users as $user)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>
-                                {{ $tier_user->tier->tier_name }}
+                                {{$user->name }}
                         </td>
                         <td>
-                                {{ $tier_user->user->name }}
+                                {{ $user->exp }}
                         </td>
                         <td>
-                                {{ $tier_user->exp }}
+                            {{ $user->tier->tier_name }}
                         </td>
                     </tr>
                     @endforeach  

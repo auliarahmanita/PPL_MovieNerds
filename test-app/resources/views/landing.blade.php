@@ -1,15 +1,35 @@
-@extends('layouts.main')
+@extends('layouts.land')
 
 @section('container')
     {{-- <h1>Landing page</h1> --}}
 
-    <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis earum ratione nemo esse at. Fugit officiis aliquid eveniet debitis at dolores tenetur consequuntur, odit nam illum sunt suscipit culpa corrupti.</p>
-
-        <button type="button">
-            <a href="/register">Daftar</a>
-        </button>
-    </div>
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit veritatis a officia nostrum autem doloremque quisquam nesciunt, voluptatum aut aspernatur maiores blanditiis aliquam ducimus odio, consequatur accusamus quis ipsam quasi.</p>
+    <section class="landing">
+        <div class="my-width">
+          <div class="content">
+            <p class="tagline">
+              Bicarakan apa yang kamu pikirkan mengenai tontonanmu dan diskusikan
+              dengan yang lainnya.
+            </p>
+            <a class="daftar-landing" href="/register" style="display: block; height: 100%; width: 100%; text-decoration: none; color: inherit;">
+                <button type="button">
+                    Daftar
+                </button>
+            </a>
+            
+          </div>
+        </div>
+      </section>
+      <section class="landing-desc">
+        <div class="my-width">
+          <div class="content">
+            <p class="txt-desc">
+              MovieNerds adalah suatu platform online bagi penggemar film yang
+              memungkinkan penggunanya untuk berdiskusi dan bertukar informasi
+              mengenai film dalam bentuk forum. Aplikasi ini juga memiliki fitur
+              artikel yang dapat dibaca oleh pengguna untuk menambah informasi dan
+              wawasan mengenai perfilman.
+            </p>
+          </div>
+        </div>
+      </section>
 @endsection

@@ -8,6 +8,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TierController;
 use App\Http\Controllers\TaskArticleController;
+use App\Http\Controllers\AdminArticleController;
+use App\Http\Controllers\DiscussionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,14 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route::get('/landing', function () {
+    $strHome = 'landing';
+    return view('landing', [
+        'active' => "$strHome",
+        'title' => 'Landing',
+    ]);
+});
 
 Route::get('/', function () {
     $strHome = 'landing';
@@ -43,15 +53,22 @@ Route::get('/about', function () {
     }
 );
 
-
-
 Route::get('/home', [ArticleController::class, 'home']);
-Route::get('/articles', [ArticleController::class, 'index']);
+
+// Route::get('/articles', [ArticleController::class, 'index']);
+// Route::get('/api/articles', [ArticleController::class, 'index']);
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/articles', [ArticleController::class, 'index']);
+});
+
+// Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
 Route::get('/tags', [TagController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::get('/tier', [TierController::class, 'index']);
+
+Route::get('/articles/search',  [ArticleController::class, 'search'])->name('search');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
@@ -73,6 +90,17 @@ Route::get('/dashboard/articles/{article:slug}/edit', [TaskArticleController::cl
 
 Route::delete('/dashboard/articles/{article:id}', [TaskArticleController::class, 'destroy'])->name('article.destroy'); 
 
-// Route::resource('/dashboard/tags', AdminCategoryController::class)->except('show')->middleware('admin');
+// Route::resource('/admin/review_list', AdminArticleController::class, 'review')->middleware('admin');
+Route::get('/admin/review-list', [AdminArticleController::class, 'reviewList'])->name('admin.review.list');
+Route::get('/admin/review/{id}', [AdminArticleController::class, 'reviewArticle'])->name('admin.review.article');
+Route::patch('/admin/review/{article:id}/update', [AdminArticleController::class, 'update'])->name('admin.review.update');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::post('/articles/{article}/like', [ArticleController::class, 'like'])->name('articles.like');
+Route::post('/articles/{article}/dislike', [ArticleController::class, 'dislike'])->name('articles.dislike');
+
+// Discussion
+Route::get('/discussion', [DiscussionController::class, 'index'])->name('discussion');
+Route::post('/create-post', [DiscussionController::class, 'createPost'])->name('create.post');
+Route::post('/create-reply/{postId}', [DiscussionController::class, 'createReply'])->name('create.reply');

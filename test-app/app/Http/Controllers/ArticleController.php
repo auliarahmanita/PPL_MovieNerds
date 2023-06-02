@@ -3,32 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleLikesDislikes;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 class ArticleController extends Controller
 {
     public function index()
-    {
-        $title = '';
-        if (request('tag')) {
-            $tag = Tag::FirstWhere('slug', request('tag'));
-            $title = ' in ' . $tag->name;
-        }
-
-        if (request('author')) {
-            $author = User::FirstWhere('username', request('author'));
-            $title = ' by ' . $author->name;
-        }
-
-        return view('articles.articles', [
-            'active' => 'articles',
-            "title" => "All Articles" . $title,
-            "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-                ->paginate(7)->withQueryString(),
-        ]);
+{
+    $title = '';
+    if (request('tag')) {
+        $tag = Tag::firstWhere('slug', request('tag'));
+        $title = ' in ' . $tag->name;
     }
+
+    if (request('author')) {
+        $author = User::firstWhere('username', request('author'));
+        $title = ' by ' . $author->name;
+    }
+
+    $articles = Article::latest()->filter(request(['search', 'tag', 'author']))
+                ->paginate(7)->withQueryString();
+
+    return view('articles.articles', [
+        'active' => 'articles',
+        'title' => 'All Articles' . $title,
+        'articles' => $articles
+    ]);
+}   
+    // public function index()
+    // {
+    //     $title = '';
+    //     if (request('tag')) {
+    //         $tag = Tag::FirstWhere('slug', request('tag'));
+    //         $title = ' in ' . $tag->name;
+    //     }
+
+    //     if (request('author')) {
+    //         $author = User::FirstWhere('username', request('author'));
+    //         $title = ' by ' . $author->name;
+    //     }
+
+    //     return view('articles.articles', [
+    //         'active' => 'articles',
+    //         "title" => "All Articles" . $title,
+    //         "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
+    //             ->paginate(7)->withQueryString(),
+    //     ]);
+    // }
 
     public function home()
     {
@@ -46,17 +70,41 @@ class ArticleController extends Controller
         return view('home', [
             'active' => 'articles',
             "title" => "MovieNerds" . $title,
-            "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-                ->paginate(7)->withQueryString(),
+            "articles" => Article::where('reviewed', 1) // Hanya mengambil artikel dengan status review 1
+            ->latest()
+            ->filter(request(['search', 'tag', 'author']))
+            ->paginate(7)
+            ->withQueryString(),     
         ]);
     }
-
+// 
     public function show(Article $article)
     {
+
         return view('articles.article', [
             'active' => 'articles',
             "title" => "Single Article",
             "article" => $article,
         ]);
+    }
+
+    public function like(Article $article)
+    {
+        $articleLikesDislikes = ArticleLikesDislikes::firstOrNew(['article_id' => $article->id]);
+
+        $articleLikesDislikes->likes++;
+        $articleLikesDislikes->save();
+
+        return redirect()->back();
+    }
+
+    public function dislike(Article $article)
+    {
+        $articleLikesDislikes = ArticleLikesDislikes::firstOrNew(['article_id' => $article->id]);
+
+        $articleLikesDislikes->dislikes++;
+        $articleLikesDislikes->save();
+
+        return redirect()->back();
     }
 }

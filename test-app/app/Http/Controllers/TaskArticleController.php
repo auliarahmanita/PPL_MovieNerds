@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class TaskArticleController extends Controller
     {
         return view('dashboard.articles.create', [
             'tags'    => Tag::all()
-        ]);
+        ]); 
     }
 
     public function store(Request $request)
@@ -37,12 +38,25 @@ class TaskArticleController extends Controller
             'konten'   => 'required'
         ]);
 
+        auth()->user()->increment('exp', 10);
+        $this->updateTier(auth()->user());
+
         $validatedData['image'] = $request->file('image')->store('article-images');
         $validatedData['user_id'] = auth()->user()->id;
 
         Article::create($validatedData);
 
+
         return redirect('/profile')->with('success', 'New post has been created.');
+    }
+
+    private function updateTier(User $user)
+    {
+        $exp = $user->exp;
+
+        if ($exp >= 100) {
+            $user->update(['tier_id' => 2]);
+        }
     }
 
     public function show(Article $article)
