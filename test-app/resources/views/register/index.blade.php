@@ -1,14 +1,17 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="row justify-content-center">
-        <div class="col-lg-5" >
-            <main class="form-registration">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <section class="login-sec">
+        <div class="my-width">
+            <div class="judul-hal">
+                <p class="judul">Daftar</p>
+                <p class="slogan">Mari bergabung bersama kami untuk mengakses seluruh fitur MovieNerds</p>
+            </div>
+            <div class="login-box">
                 <form action="/register" method="POST">
                     @csrf
-                    <h1 class="h3 mb-3 fw-normal text-center">Registration Form</h1>
-                    
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="name">Name</label> <br>
                         @error('name')
                             <div class="invalid-feedback">
@@ -20,7 +23,7 @@
                         @enderror" name="name" id="name" placeholder="Name" required value="{{ old('name') }}">
                     </div>
                     
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="username">Username</label> <br>
                         @error('username')
                             <div class="invalid-feedback">
@@ -32,7 +35,7 @@
                         @enderror" name="username" id="username" placeholder="Username" required value="{{ old('username') }}">
                     </div>
 
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="email">Email</label> <br>
                         @error('email')
                             <div class="invalid-feedback">
@@ -44,7 +47,7 @@
                         @enderror" name="email" id="email" placeholder="name@example.com" required value="{{ old('email') }}">                        
                     </div>
 
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="password">Password</label> <br>
                         @error('password')
                             <div class="invalid-feedback">
@@ -55,11 +58,17 @@
                             is-invalid
                         @enderror" name="password" id="password" placeholder="Password" required>
                     </div>
-                
-                    <button class="w-100 btn btn-lg btn-primary btn-danger mt-3" type="submit">Register</button>
+
+                    <div class="data-login">
+                        <div class="btn-login">
+                            <input type="submit" name="submit" id="submit" value="Register">
+                        </div>
+                        <div class="non-akun">
+                            <p>Sudah punya akun? <a href="/login">Login</a></p>
+                        </div>
+                    </div>
                 </form>
-                <small class="d-block text-center mt-2">Sudah punya akun? <a href="/login">Login</a></small>
-            </main>
+            </div>
         </div>
-    </div>
+    </section>
 @endsection

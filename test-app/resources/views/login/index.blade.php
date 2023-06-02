@@ -19,13 +19,17 @@
                 
             @endif    
             
-            <br><br><br>
-            <main class="form-signin">
+        <section class="login-sec">
+        <div class="my-width">
+            <div class="judul-hal">
+                <p class="judul">Masuk</p>
+                <p class="slogan">Masuk ke akunmu untuk dapat mengakses seluruh fitur MovieNerds</p>
+            </div>
+            <div class="login-box">
                 <form action="/login" method="POST">
                     @csrf
-                    <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
                 
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="email">Email </label> <br>
                         @error('email')
                             <div class="invalid-feedback">
@@ -35,9 +39,10 @@
                         <input type="email" name="email" class="form-control @error('email')
                             is-invalid
                         @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+                        <p>*Gunakan email yang valid*</p>
                     </div>
 
-                    <div class="form-floating">
+                    <div class="data-login">
                         <label for="password">Password </label> <br>
                         @error('password')
                             <div class="invalid-feedback">
@@ -49,10 +54,16 @@
                         @enderror" id="password" placeholder="Password" required ">                        
                     </div>
                 
-                    <button class="w-100 btn btn-lg btn-primary btn-danger" type="submit">Login</button>
+                    <div class="data-login">
+                        <div class="btn-login">
+                            <input type="submit" name="submit" id="submit" value="Masuk">
+                        </div>
+                        <div class="non-akun">
+                            <p>Belum Punya Akun? <a href="/register">Register Now!</a></p>
+                        </div>
+                    </div>
                 </form>
-                <small class="d-block text-center mt-2">Not Registered? <a href="/register">Register Now!</a></small>
-            </main>
+            </div>
         </div>
-    </div>
+    </section>
 @endsection
