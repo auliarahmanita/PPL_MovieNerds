@@ -45,8 +45,6 @@ Route::get('/about', function () {
     }
 );
 
-
-
 Route::get('/home', [ArticleController::class, 'home']);
 
 // Route::get('/articles', [ArticleController::class, 'index']);
@@ -54,7 +52,6 @@ Route::get('/home', [ArticleController::class, 'home']);
 Route::group(['prefix' => 'api'], function () {
     Route::get('/articles', [ArticleController::class, 'index']);
 });
-
 
 Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
@@ -97,5 +94,3 @@ Route::post('/articles/{article}/dislike', [ArticleController::class, 'dislike']
 Route::get('/discussion', [DiscussionController::class, 'index'])->name('discussion');
 Route::post('/create-post', [DiscussionController::class, 'createPost'])->name('create.post');
 Route::post('/create-reply/{postId}', [DiscussionController::class, 'createReply'])->name('create.reply');
-
-
