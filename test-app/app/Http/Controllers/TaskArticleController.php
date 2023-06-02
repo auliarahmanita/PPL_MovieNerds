@@ -87,7 +87,7 @@ class TaskArticleController extends Controller
 
         if ($request->slug !== $article->slug) {
             $rules['slug'] = 'required|unique:articles';
-        }
+        } 
 
         $validatedData = $request->validate($rules);
 
