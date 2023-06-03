@@ -211,10 +211,10 @@ section {
     width: 100%;
 }
 .landing .content {
-    height: 380px;
+    height: 381px;
 }
 .tagline {
-    margin-top: 70px;
+    margin-top: 200px;
     font-family: "Times New Roman", Times, serif;
     font-style: normal;
     font-weight: 700;
@@ -248,7 +248,7 @@ section {
     border-top: 4px solid #000;
 }
 .landing-desc .content {
-    height: 295px;
+    height: 400px;
     display: flex;
     align-items: center;
 }
@@ -256,7 +256,7 @@ section {
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 15px;
     line-height: 30px;
     text-align: justify;
 }
@@ -284,6 +284,97 @@ footer .my-width {
 .copyright {
     margin-top: 15px;
     color: #bebebe;
+}
+
+section.team {
+    background-color: #383838;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 75vh;
+}
+
+section.team img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    section.team {
+        flex-direction: row;
+    }
+
+    section.team img {
+        max-width: none;
+        height: 100%;
+    }
+}
+
+#team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.team-member {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%; /* Mengubah lebar menjadi 100% */
+    max-width: none; /* Menghapus max-width */
+    margin-right: 0; /* Menghapus margin-right */
+}
+
+.team-member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .team-member {
+        width: calc(25% - 20px);
+        max-width: calc(25% - 20px);
+        margin-right: 20px;
+    }
+
+    .team-member:last-child {
+        margin-right: 0;
+    }
+}
+
+#team h2 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.team-member {
+    text-align: center;
+    margin-bottom: 40px;
+    flex: 0 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    margin-right: 20px;
+}
+
+.team-member:last-child {
+    margin-right: 0;
+}
+
+.team-member img {
+    border-radius: 50%;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.team-member img:hover {
+    transform: scale(1.1);
 }
 
 /* responsive media query start */
