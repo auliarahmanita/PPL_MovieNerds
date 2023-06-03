@@ -92,21 +92,28 @@ class TaskArticleController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if (request()->file('photo')) {
+        // if (request()->file('photo')) {
+        //     if($article->photo && file_exists(public_path('storage/photo/' . $article->photo))){
+        //         Storage::delete('storage/photo/'.$article->photo);
+        //     }
+    
+        //     $file = $request->file('photo');
+        //     $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
+        //     $request->photo->move(public_path('public/storage/photo'), $fileName);
+        //     $article->photo = $fileName;
+        // }
+    
+        if ($request->file('photo')) {
+            // if ($request->article('old-photo')) Storage::delete('storage/photos/'.$article->photo);
             if($article->photo && file_exists(public_path('storage/photo/' . $article->photo))){
                 Storage::delete('storage/photo/'.$article->photo);
             }
-    
+
             $file = $request->file('photo');
             $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
-            $request->photo->move(public_path('public/storage/photo'), $fileName);
-            $article->photo = $fileName;
+            $file->move(public_path('storage/photo'), $fileName);
+            $validatedData['photo'] = $fileName;;
         }
-    
-        // if ($request->file('image')) {
-        //     if ($request->article('old-image')) Storage::delete($request->post('old-image'));
-        //     $validatedData['image'] = $request->file('image')->store('post-images');
-        // }
 
         $validatedData['user_id'] = auth()->user()->id;
 
