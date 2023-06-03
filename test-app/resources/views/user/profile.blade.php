@@ -17,9 +17,19 @@
                     <img src="img/profile.jpeg">
                 @endif
                 </div>
-                <h1 class="mb-5">{{$user->username}}</h1>
-                <p class="mb-5">{{$user->bio}}</p>
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                
+                <div>
+                    <h1 class="mb-5">{{ $user->username }}</h1>
+                    <p>{{ $user->tier->tier_name }}</p>
+                </div>
+                <p>Exp : {{ $user->exp }}/100</p>
+                <p>{{ $user->articles()->count() }} Artikel </p>
+                <p class="mb-5">{{ $user->bio }}</p>
+
+                
+                <br><br><br>
+
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">    
                     <h1>Artikel saya</h1>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
@@ -30,38 +40,40 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($articles as $articles)
-                        @if ($articles->user_id === auth()->user()->id)
-                            <tr>
-                                <td>
-                                    <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
-                                    <p>{{ $articles->created_at->diffForHumans() }}</p>
-                                    <p>{{ $articles->author->username }}</p>
-                                </td>
-                                <td>
-                                    <p>
-                                        @if ($articles->reviewed)
-                                            Terpublikasi
-                                        @else
-                                            Dalam Proses Pengecekan
-                                        @endif
-                                    </p>
-                                </td>
-                                <td>
-                                    <button><a href="/dashboard/articles/{{ $articles->slug }}/edit">Edit</a></button>
-                                    <form action="/dashboard/articles/{{ $articles->id}}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button onclick="return confirm('Are you sure to delete this post?')">Hapus</button>
-                                    </form>
-                                </td>
-                            @endif
+                            @foreach($articles as $articles)
+                                @if ($articles->user_id === auth()->user()->id)
+                                    <tr>
+                                        <td>
+                                            <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
+                                            <p>{{ $articles->created_at->diffForHumans() }}</p>
+                                            <p>{{ $articles->author->username }}</p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                @if ($articles->reviewed)
+                                                    Terpublikasi
+                                                @else
+                                                    Dalam Proses Pengecekan
+                                                @endif
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <button><a href="/dashboard/articles/{{ $articles->slug }}/edit">Edit</a></button>
+                                            <form action="/dashboard/articles/{{ $articles->id}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button onclick="return confirm('Are you sure to delete this post?')">Hapus</button>
+                                            </form>
+                                        </td>
+                                @endif
                             @endforeach
-                            </tr>
+                                    </tr>
                         </tbody>
                     </table>
                 </div>
-                    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                
+                <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                
                 <a href="/edit_profile" class="d-block mt-3">Edit profil</a>
             </div>
         </div>
