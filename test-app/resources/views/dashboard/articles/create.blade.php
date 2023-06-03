@@ -60,10 +60,10 @@
                             </select>
                     </div>
                     <div class="data-login">
-                        <label for="image">Image</label>
-                        <img id="img-preview" alt="">
-                        <input id="image" name="image" type="file" class="image-button" value="" onchange="previewImage(); ">
-                        @error('image')<small>{{ $message }}</small>@enderror
+                        <label for="photo">Image</label>
+                        <img id="photo-preview" alt="">
+                        <input id="photo" name="photo" type="file" class="image-button" value="" onchange="previewImage(); ">
+                        @error('photo')<small>{{ $message }}</small>@enderror
                     </div>
 
                 </div>
