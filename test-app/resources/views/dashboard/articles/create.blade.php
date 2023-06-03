@@ -37,10 +37,10 @@
                     </select>
                 </div>
                 <div>
-                    <label for="image">Image</label>
-                    <img id="img-preview" alt="">
-                    <input id="image" name="image" type="file" onchange="previewImage();">
-                    @error('image')<small>{{ $message }}</small>@enderror
+                    <label for="photo">Image</label>
+                    <img id="photo-preview" alt="">
+                    <input id="photo" name="photo" type="file" onchange="previewPhoto();">
+                    @error('photo')<small>{{ $message }}</small>@enderror
                 </div>
             </div>
             <div>

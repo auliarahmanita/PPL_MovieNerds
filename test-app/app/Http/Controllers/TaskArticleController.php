@@ -34,14 +34,14 @@ class TaskArticleController extends Controller
             'slug'   => 'required|unique:articles',
             'tag_id'   => 'required|numeric',
             'excerpt'   => 'required',
-            'photo' => 'nullable|image|file|max:1024',
+            // 'photo' => 'nullable|image|file|max:1024',
             'konten'   => 'required'
         ]);
 
         auth()->user()->increment('exp', 10);
         $this->updateTier(auth()->user());
 
-        $validatedData['photo'] = $request->file('photo')->store('article-images');
+        // $validatedData['photo'] = $request->file('photo')->store('article-images');
         $validatedData['user_id'] = auth()->user()->id;
 
         Article::create($validatedData);
@@ -80,7 +80,8 @@ class TaskArticleController extends Controller
             'title' => 'required|max:255',
             'tag_id'   => 'required|numeric',
             'excerpt'   => 'required',
-            'image' => 'image|file|max:1024',
+            'photo' => 'nullable|image|file|max:1024',
+            // 'image' => 'image|file|max:1024',
             'konten'   => 'required'
         ];
 
