@@ -39,15 +39,15 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="image">Image</label>
-                    <input type="hidden" name="old-image" value="{{ $article->image }}">
-                    @if($article->image)
-                    <img src="{{ asset('storage/' . $article->image) }}" alt="">
+                    <label for="photo">Image</label>
+                    <input type="hidden" name="old-photo" value="{{ $article->photo }}">
+                    @if($article->photo)
+                    <img src="{{ 'public/storage/photo/'.$article->photo }}" alt="">
                     @else
-                    <img id="img-preview" alt="">
+                    <img id="photo-preview" alt="">
                     @endif
-                    <input id="image" name="image" type="file" onchange="previewImage();">
-                    @error('image')<small>{{ $message }}</small>@enderror
+                    <input id="photo" name="photo" type="file" onchange="previewImage();">
+                    @error('photo')<small>{{ $message }}</small>@enderror
                 </div>
 
             </div>

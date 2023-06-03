@@ -9,7 +9,7 @@
             <p>By. <a href="/api/articles?author={{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a> in <a href="/api/articles?tag={{ $article->tag->slug }}" class="text-decoration-none">{{ $article->tag->name }}</a></p>
             
                 @if($article->photo)
-                    <img src="{{ 'public/storage/photo/'.$article->photo }}">
+                    <img src="{{ '/storage/photo/'.$article->photo }}" alt="">
                 @else
                     <img src="https://source.unsplash.com/1200x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
                 @endif
