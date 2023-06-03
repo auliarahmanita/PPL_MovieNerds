@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     //
-    public function index()
+    public function index() 
     {
         $user = User::findOrFail(Auth::id());
         // $articles = auth()->user()->articles()->latest()->get();
@@ -51,6 +51,19 @@ class ProfileController extends Controller
         ]);
     }
 
+    // public function edit(User $user)
+    // {
+    //     return view('user.edit_profile', [
+    //         'user' => $user,
+    //     ]);
+    // }
+
+    public function edit()
+    {
+        $user = auth()->user(); 
+    return view('user.edit_profile', compact('user'));
+    }
+
     public function update(Request $request, $id)
     {
         request()->validate([
@@ -83,19 +96,18 @@ class ProfileController extends Controller
         }
     
         if (request()->hasFile('photo')) {
-            if($user->photo && file_exists(storage_path('public/storage/photos/' . $user->photo))){
-                Storage::delete('public/storage/photos/'.$user->photo);
+            if($user->photo && file_exists(public_path('storage/photos/' . $user->photo))){
+                Storage::delete('storage/photos/'.$user->photo);
             }
     
             $file = $request->file('photo');
             $fileName = $file->hashName() . '.' . $file->getClientOriginalExtension();
-            $request->photo->move(storage_path('public/storage/photos'), $fileName);
+            $request->photo->move(public_path('storage/photos'), $fileName);
             $user->photo = $fileName;
         }
     
-    
         $user->save();
     
-        return back()->with('status', 'Profile updated!');
+        return redirect()->to('/profile')->with('status', 'Profile updated!');
     }
 }

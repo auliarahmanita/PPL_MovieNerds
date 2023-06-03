@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             // $table->date('tanggal_lahir')->nullable();
-            $table->foreignId('tier_id');
+            $table->foreignId('tier_id')->default(1);
             $table->text('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();

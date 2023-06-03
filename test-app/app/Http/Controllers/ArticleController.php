@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -33,26 +34,6 @@ class ArticleController extends Controller
         'articles' => $articles
     ]);
 }   
-    // public function index()
-    // {
-    //     $title = '';
-    //     if (request('tag')) {
-    //         $tag = Tag::FirstWhere('slug', request('tag'));
-    //         $title = ' in ' . $tag->name;
-    //     }
-
-    //     if (request('author')) {
-    //         $author = User::FirstWhere('username', request('author'));
-    //         $title = ' by ' . $author->name;
-    //     }
-
-    //     return view('articles.articles', [
-    //         'active' => 'articles',
-    //         "title" => "All Articles" . $title,
-    //         "articles" => Article::latest()->filter(request(['search', 'tag', 'author']))
-    //             ->paginate(7)->withQueryString(),
-    //     ]);
-    // }
 
     public function home()
     {
@@ -67,14 +48,29 @@ class ArticleController extends Controller
             $title = ' by ' . $author->name;
         }
 
-        return view('home', [
-            'active' => 'articles',
-            "title" => "MovieNerds" . $title,
-            "articles" => Article::where('reviewed', 1) // Hanya mengambil artikel dengan status review 1
+        $articles = 
+
+        $reviewedArticles = Article::where('reviewed', 1)
             ->latest()
             ->filter(request(['search', 'tag', 'author']))
             ->paginate(7)
-            ->withQueryString(),     
+            ->withQueryString();
+
+        $popularArticles = Article::select('articles.*', DB::raw('COALESCE(SUM(article_likes_dislikes.likes), 0) as likes_count'))
+            ->leftJoin('article_likes_dislikes', 'article_likes_dislikes.article_id', '=', 'articles.id')
+            ->groupBy('articles.id','articles.tag_id', 'articles.user_id', 'articles.title', 'articles.slug', 'articles.excerpt', 'articles.konten', 'articles.diposting_pada', 'articles.created_at', 'articles.updated_at', 'articles.reviewed', 'articles.photo')
+            ->orderByDesc('likes_count')
+            ->take(8)
+            ->paginate(7)
+            ->withQueryString();
+        
+        // $articles = $reviewedArticles->union($popularArticles);
+
+        return view('home', [
+            'active' => 'articles',
+            "title" => "MovieNerds" . $title,
+            "reviewedArticles" => $reviewedArticles,
+            "popularArticles" => $popularArticles,
         ]);
     }
 // 

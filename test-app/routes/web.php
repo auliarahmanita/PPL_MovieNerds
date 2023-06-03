@@ -71,7 +71,8 @@ Route::get('/tier', [TierController::class, 'index']);
 Route::get('/articles/search',  [ArticleController::class, 'search'])->name('search');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
-Route::patch('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+Route::get('/edit_profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/edit_profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
 Route::post('/store', [TaskArticleController::class, 'store']);
 Route::get('/create', [TaskArticleController::class, 'create']);
@@ -79,6 +80,7 @@ Route::get('/create', [TaskArticleController::class, 'create']);
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/register', [RegisterController::class, 'store']);
+
 
 Route::get('/dashboard', [TaskController::class, 'index'])->middleware('auth');
 

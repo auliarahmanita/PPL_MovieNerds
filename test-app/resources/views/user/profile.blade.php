@@ -11,11 +11,11 @@
                     </div>
                 @endif
                 <div class="col-md-4">
-                    @if($user->photo)
-                        <img src="{{ asset('storage/photos/'.$user->photo) }}" class="img-thumbnail rounded mx-auto d-block">
-                    @else
-                        <img src="{{ asset('img/profile.png') }}" class="img-thumbnail rounded mx-auto d-block">
-                    @endif
+                @if($user->photo)
+                    <img src="{{ 'public/storage/photos/'.$user->photo }}">
+                @else
+                    <img src="img/profile.jpeg">
+                @endif
                 </div>
                 <h1 class="mb-5">{{$user->username}}</h1>
                 <p class="mb-5">{{$user->bio}}</p>
@@ -24,7 +24,6 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th> --}}
                                 <th scope="col">Artikel</th>
                                 <th scope="col">Status Publikasi</th>
                                 <th scope="col">...</th>
@@ -34,9 +33,6 @@
                         @foreach($articles as $articles)
                         @if ($articles->user_id === auth()->user()->id)
                             <tr>
-                                {{-- <td>
-                                    {{ $loop->iteration }}
-                                </td> --}}
                                 <td>
                                     <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
                                     <p>{{ $articles->created_at->diffForHumans() }}</p>
@@ -59,31 +55,19 @@
                                         <button onclick="return confirm('Are you sure to delete this post?')">Hapus</button>
                                     </form>
                                 </td>
-                                {{-- @foreach
-                                    @if ($articles->reviewed)
-                                        <td class="px-6 py-4">
-                                            <a href="/article/{{ $articles->slug }}">{{ $articles->title }}</a>
-                                            <p>{{ $articles->created_at->diffForHumans() }}</p>
-                                            <p>{{ $user->username }}</p>
-                                        </td>
-                                    @endif
-                                @endforeach --}}
                             @endif
                             @endforeach
                             </tr>
                         </tbody>
                     </table>
-
-                    {{-- <button>
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/dashboard/articles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Dashboard</a>
-                    </button> --}}
                 </div>
-
-                <div>
-
-                </div>
-                    <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-                    <div class="card">
+                    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                <a href="/edit_profile" class="d-block mt-3">Edit profil</a>
+            </div>
+        </div>
+    </div>  
+@endsection
+                    {{-- <div class="card">
                         <div class="card-header">{{ __('Update Profile') }}</div>
         
                         <div class="card-body">
@@ -149,7 +133,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> 
         
                                         <div class="row mb-3">
                                             <label for="old_password" class="col-md-4 col-form-label text-md-end">{{ __('Old Password') }}</label>
@@ -221,10 +205,4 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {{-- <a href="/edit_profile" class="d-block mt-3">Edit profil</a> --}}
-            </div>
-        </div>
-    </div>  
-
-@endsection
+                    </div> --}}

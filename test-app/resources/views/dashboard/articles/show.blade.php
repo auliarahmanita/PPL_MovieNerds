@@ -1,4 +1,4 @@
-@extends('ayouts.main')
+@extends('layouts.main')
 
 @section('container')
 <div class="max-w-4xl mx-auto py-10 px-6 rounded-lg bg-white shadow-md shadow-slate-200">
