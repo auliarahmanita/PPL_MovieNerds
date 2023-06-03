@@ -60,7 +60,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $user = User::find(1); // Ganti dengan logika yang sesuai untuk mendapatkan data user yang ingin diedit
+        $user = auth()->user(); 
     return view('user.edit_profile', compact('user'));
     }
 
