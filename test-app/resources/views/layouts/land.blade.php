@@ -14,7 +14,7 @@
         <div class="logo">
             <a href="/landing"><img src="img/logo-longversion.jpg" alt=""></a></div>
         <ul class="menu">
-            <li><a href="/home" class="menu-btn">Beranda</a></li>
+            <li><a href="/home" class="menu-btn">Bernda</a></li>
             <li><a href="/discussion" class="menu-btn">Discussion</a></li>
             <li><a href="/tier" class="menu-btn">Peringkat</a></li>
             <li><a href="/about" class="menu-btn">About Us</a></li>
