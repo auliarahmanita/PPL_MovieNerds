@@ -117,7 +117,7 @@
 
     {{-- button center articles --}}
     <section style="display:flex;justify-content:center;align-items:center;">
-        <a href="javascript:;"
+        <a href="/api/articles"
             style="box-sizing: border-box;border: 2px solid #FFD233; border-radius: 12px;padding:10px 35px;margin-top:5%;margin-bottom:5%;">
             Index Artikel
         </a>
