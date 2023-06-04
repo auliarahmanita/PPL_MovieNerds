@@ -10,15 +10,15 @@
 <section class="hotnews">
         <div class="my-width">
             <div class="hotnews-content">
-                <a href="{{ url(sprintf('article/%s', $articles[0]->slug)) }}">
-                    <img src="https://source.unsplash.com/1000x500/?{{ $articles[0]->tag->name }}"
-                        alt="{{ $articles[0]->tag->name }}" style="max-height: 592px !important;">
+                <a href="{{ url(sprintf('article/%s', $reviewedArticles[0]->slug)) }}">
+                    <img src="https://source.unsplash.com/1000x500/?{{ $reviewedArticles[0]->tag->name }}"
+                        alt="{{ $reviewedArticles[0]->tag->name }}" style="max-height: 592px !important;">
                     <div class="text-hotnews">
                         <div class="title-hotnews">
-                            <h1>{{ $articles[0]->title }}</h1>
+                            <h1>{{ $reviewedArticles[0]->title }}</h1>
                         </div>
                         <div class="waktu-upload">
-                            <p>{{ $articles[0]->created_at->diffForHumans() }}</p>
+                            <p>{{ $reviewedArticles[0]->created_at->diffForHumans() }}</p>
                         </div>
                     </div>
                 </a>
@@ -27,9 +27,9 @@
                         <img src="img/profile-pict.jpg" alt="">
                     </div>
                     <div class="akun-hotnews">
-                        <a href="#akun-penulis">
+                        <a href="/articles/?author={{ $reviewedArticles[0]->author->username }}">
                             <div class="nama-akun">
-                                <p>{{ $articles[0]->author->name }}</p>
+                                <p>{{ $reviewedArticles[0]->author->name }}</p>
                             </div>
                         </a>
                         <div class="tier-status">
@@ -41,32 +41,28 @@
             </div>
         </div>
     </section>
-    
-
-    <p>---------------------------------------------------------------------------------------------------------------------------------------------</p>
-    <h1>Artikel Populer</h1>
-    <div class="row">
-        @foreach ($popularArticles as $article)
-        <div class="col-md-4 mb-5">
-            <div class="card">
-                <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="card-img-top" alt="{{ $article->tag->name }}">
-                <div class="position-absolute top-0 start-0 px-3 py-2 ">
-                    <a href="/api/articles?tag={{ $article->tag->slug }}" class="text-white text-decoration-none">{{ $article->tag->name }}</a>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title"><a href="/article/{{ $article->slug }}">{{ $article->title }}</a></h2>
-                    <p>
-                        <small class="text-muted">
-                            {{ $article->created_at->diffForHumans() }} <br>
-                            Ditulis oleh <a href="/api/articles?author={{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a>
-                        </small>
-                    </p>
+    <section class="populer">
+        <div class="my-width">
+            <div class="populer-content">
+                <div class="title-section">
+                    <p>Populer</p>
                 </div>
             </div>
         </div>
-        <br>
-        @endforeach
-    </div>
+        <div class="bungkus">
+
+            <div class="karesel">
+                @foreach ($popularArticles as $article)
+                <div class="kotak">
+                    <a href="/article/{{ $article->slug }}"" class="text-white text-decoration-none">
+                        <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="card-img-top" alt="{{ $article->tag->name }}">
+                        <h2>{{ $article->title }}</h2>
+                    </a>
+                </div>
+                @endforeach
+        </div>
+    </section>
+    
     <section class="terbaru">
         <div class="my-width">
             <div class="terbaru-content">
@@ -74,7 +70,7 @@
                     <p>Terbaru</p>
                 </div>
                 <ul>
-                    @foreach ($articles->skip(1) as $article)
+                    @foreach ($reviewedArticles as $article)
                         <li>
                             <div class="karesel">
                                 <div class="kotak-terbaru">
