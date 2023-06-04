@@ -86,7 +86,7 @@
                             <input type="hidden" name="article_id" value="{{ $article->id }}">
                             <input type="hidden" name="parent_comment_id" value="">
                             <div class="form-group">
-                                <textarea name="comment_text" class="form-control" rows="3" placeholder="Write a comment..."></textarea>
+                                <textarea name="comment_text" class="form-control" rows="3" placeholder="Write a comment..." spellcheck="false"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit Comment</button>
                         </form>
@@ -118,7 +118,7 @@
                                         <input type="hidden" name="article_id" value="{{ $article->id }}">
                                         <input type="hidden" name="parent_comment_id" value="{{ $comment->id }}">
                                         <div class="form-group">
-                                            <textarea name="comment_text" class="form-control" rows="3" placeholder="Write a reply..."></textarea>
+                                            <textarea name="comment_text" class="form-control" rows="3" placeholder="Write a reply..." spellcheck="false"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Reply</button>
                                     </form>

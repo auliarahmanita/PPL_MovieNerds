@@ -54,7 +54,7 @@
             <div class="karesel">
                 @foreach ($popularArticles as $article)
                 <div class="kotak">
-                    <a href="/article/{{ $article->slug }}"" class="text-white text-decoration-none">
+                    <a href="/article/{{ $article->slug }}" class="text-white text-decoration-none">
                         <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="card-img-top" alt="{{ $article->tag->name }}">
                         <h2>{{ $article->title }}</h2>
                     </a>
@@ -109,7 +109,7 @@
 
     {{-- button center articles --}}
     <section style="display:flex;justify-content:center;align-items:center;">
-        <a href="javascript:;"
+        <a href="/api/articles"
             style="box-sizing: border-box;border: 2px solid #FFD233; border-radius: 12px;padding:10px 35px;margin-top:5%;margin-bottom:5%;">
             Index Artikel
         </a>
