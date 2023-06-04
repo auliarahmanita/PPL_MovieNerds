@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </a>
-                <div class="penulis-hotnews">
+                <div class="penulis-hotnews"> 
                     <div class="foto-profile">
                         @if( $reviewedArticles[0]->user && $reviewedArticles[0]->user->photo)
                             <img src="{{ asset('storage/photos/'.$reviewedArticles[0]->user->photo) }}">

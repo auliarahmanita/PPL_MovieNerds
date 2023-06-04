@@ -21,10 +21,13 @@ class DiscussionController extends Controller
             'content' => 'required',
         ]);
 
-        $username = $request->input('username') ?? 'anonymous';
+        $user = auth()->user();
+        $username = $user->username;
+
+        // $username = $request->input('username') ?? 'anonymous';
 
         $post = new Post();
-        $post->username = $username;
+        $post->username = $username; 
         $post->content = $request->input('content');
         $post->save();
 

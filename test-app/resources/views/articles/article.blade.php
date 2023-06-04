@@ -36,7 +36,7 @@
                                         </div>
                                     </a>
                                     <div class="tier-status">
-                                        <p>Tier</p>
+                                        <p>{{ $article->author->tier->tier_name }}</p>
                                     </div>
                                 </div>
                                 <div class="waktu-upload">
@@ -75,14 +75,24 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <img src="https://source.unsplash.com/1200x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
+
+                {{-- @if($article->photo)
+                    <img src="{{ 'public/storage/photo/'.$article->photo }}">
+                @else
+                    <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
+                @endif --}}
+                
+                @if($article->photo)
+                    <img src="{{ '/public/storage/photo/'.$article->photo }}">
+                @else
+                    <img src="https://source.unsplash.com/1200x400/?{{ $article->tag->name }}" class="mb-4 img-fluid" alt="{{ $article->tag->name }}">
+                @endif
+
                 <div class="isi-article">
                     {!! $article->konten !!}
                 </div>
-                <a href="/articles" class="d-block mt-3">Back to Articles</a>
+                <a href="/api/articles" class="d-block mt-3">Back to Articles</a>
                 <div class="comments-section">
                     <h2>Comments</h2>
                     <div class="comment-form">

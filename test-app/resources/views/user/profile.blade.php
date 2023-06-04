@@ -33,16 +33,16 @@
         </div>
     @endif
 
-    <section class="editprofile">
+    <section class="editprofile"> 
         <div class="my-width">
             <div style="display: flex;">
                 @if ($user->photo)
-                    <img src="{{ asset('storage/photos/' . $user->photo) }}" alt=""
+                    <img src="{{ asset('/public/storage/photos/' . $user->photo) }}" alt=""
                         style="width: 150px;
                     height: 150px;
                     border-radius: 50%;">
                 @else
-                    <img src="img/profile-pict.jpg" alt=""
+                    <img src="img/profile.jpeg" alt=""
                         style="width: 150px;
                 height: 150px;
                 border-radius: 50%;">
@@ -89,10 +89,11 @@
     <section class="terbaru">
         @if ($articles->count() != 0)
             <div class="my-width">
-
                 <div class="terbaru-content" style="border-top:none;margin-top: 25px;margin-bottom: 5%;">
                     <ul>
                         @foreach ($articles as $article)
+                            @if ($article->user_id == auth()->user()->id)
+
                             <li>
                                 <div class="karesel">
                                     <div class="kotak-terbaru">
@@ -100,17 +101,26 @@
                                             <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}"
                                                 alt="">
                                         </a>
+                                        
                                         <div class="text-terbaru">
+                                            
                                             <div class="title-terbaru">
-                                                <h3>{{ $article->title }}</h3>
+                                                <a href="{{ url(sprintf('article/%s', $article->slug)) }}">
+                                                    <h3>{{ $article->title }}</h3>
+                                                </a>
                                             </div>
+                                            
                                             <div class="waktu-upload">
                                                 <p>{{ $article->created_at->diffForHumans() }}</p>
                                             </div>
                                             <div class="penulis-terbaru">
-                                                <img src="img/profile-pict.jpg" alt="">
+                                                @if ($user->photo)
+                                                    <img src="{{ asset('/public/storage/photos/' . $user->photo) }}" alt="">
+                                                @else
+                                                    <img src="img/profile.jpeg" alt="">
+                                                @endif
                                                 <div class="akun-terbaru">
-                                                    <a href="{{ route('user.show', [$article->author->id]) }}">
+                                                    <a href="{{ route('profile.index', [$article->author->id]) }}">
                                                         <div class="nama-akun"
                                                             style="margin-top: 0;
                                                             margin-bottom: 0;
@@ -119,7 +129,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="tier-status">
-                                                        <p>Tier</p>
+                                                        <p>{{ $article->author->tier->tier_name }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,6 +150,7 @@
                                     </div>
                                 </div>
                             </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
