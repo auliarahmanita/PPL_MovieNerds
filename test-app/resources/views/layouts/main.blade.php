@@ -81,13 +81,21 @@
                     <li>
                         <div
                             style="justify-content: center;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;margin-left: 100px;">
+                            display: flex;
+                            align-items: center;
+                            gap: 10px; margin-left: 100px;">
                             <div class="hamburger-menu" onclick="toggleDropdown()">
+                                {{-- <div class="bar"></div>
                                 <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
+                                <div class="bar"></div> --}}
+                                <p style="display: flex; align-items: center;">               
+                                    {{ auth()->user()->username }}
+                                    @if (auth()->user()->photo)
+                                        <img src="{{ asset('/public/storage/photos/' . auth()->user()->photo) }}" alt="" style="max-width: 45px; height: 45px; border-radius: 50%; margin-left: 10px; border: 2px solid #505050">
+                                    @else
+                                        <img src="img/profile.jpeg" alt="" style="max-width: 45px; border-radius: 50%;">
+                                    @endif
+                                </p>
                             </div>
                         </div>
                         <!-- Dropdown menu -->
