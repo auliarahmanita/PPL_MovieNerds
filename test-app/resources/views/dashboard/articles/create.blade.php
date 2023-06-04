@@ -1,4 +1,4 @@
-@extends('layouts.land')
+@extends('layouts.main')
 
 
 @section('container') 

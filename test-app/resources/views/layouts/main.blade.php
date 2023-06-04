@@ -130,7 +130,7 @@
             </ul>
         </div>
     </nav>
-</body>
+</body> 
 
 {{-- Main Content --}}
 @yield('container')
