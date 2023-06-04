@@ -1,6 +1,7 @@
 @extends('layouts.main') 
 
 @section('container') 
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
     <h1 class="mb-3 text-center">{{ $title }}</h1> 
 
     @if ($articles->count())
