@@ -21,11 +21,16 @@
                     <div class="cont2">
                         <div class="penulis-hotnews">
                             <div class="foto-profile">
-                                <img src="{{ asset('img/profile-pict.jpg') }}" alt="">
+                                @if($article->user && $article->user->photo)
+                                    <img src="{{ asset('storage/photos/'.$article->user->photo) }}">
+                                @else
+                                    <img src="{{ asset('img/profile.jpeg') }}">
+                                @endif
+                                {{-- <img src="{{ 'public/storage/photos/'.$article->user->photo }}" alt=""> --}}
                             </div>
                             <div class="detail-penulisan">
                                 <div class="akun-hotnews">
-                                    <a href="/articles/?author={{ $article->author->username }}" >
+                                    <a href="/api/articles/?author={{ $article->author->username }}" >
                                         <div class="nama-akun">
                                             <p>{{ $article->author->name }}</p>
                                         </div>
