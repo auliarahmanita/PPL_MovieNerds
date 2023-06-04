@@ -31,7 +31,7 @@
                         @endif
                     </div>
                     <div class="akun-hotnews">
-                        <a href="/articles/?author={{ $reviewedArticles[0]->author->username }}">
+                        <a href="/api/articles/?author={{ $reviewedArticles[0]->author->username }}">
                             <div class="nama-akun">
                                 <p>{{ $reviewedArticles[0]->author->name }}</p>
                             </div>
