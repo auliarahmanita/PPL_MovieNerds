@@ -98,8 +98,12 @@
                                 <div class="karesel">
                                     <div class="kotak-terbaru">
                                         <a href="{{ url(sprintf('article/%s', $article->slug)) }}">
-                                            <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}"
-                                                alt="">
+                                            @if($article->photo)
+                                                <img src="{{ asset('storage/photos/'.$article->photo) }}">
+                                            @else
+                                                <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}" alt="">
+                                            @endif
+                                            {{-- <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}" alt=""> --}}
                                         </a>
                                         
                                         <div class="text-terbaru">
