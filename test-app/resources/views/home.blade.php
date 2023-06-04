@@ -96,7 +96,7 @@
                                             <img src="{{ asset('img/profile.jpeg') }}">
                                         @endif
                                         <div class="akun-terbaru">
-                                            <a href="#akun-penulis">
+                                            <a href="/api/articles/?author={{ $reviewedArticles[0]->author->username }}">
                                                 <div class="nama-akun">
                                                     <p>{{ $article->author->name }}</p>
                                                 </div>

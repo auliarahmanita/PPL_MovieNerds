@@ -1,9 +1,11 @@
 @extends('layouts.main')
 
-{{-- Page CSS --}}
 @section('head')
-    <link rel="stylesheet" href="{{ asset('css/profile-edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/article.css') }}">
+@endsection
+
+@section('container')
 
     <style>
         input[type="range"]:disabled {
@@ -23,9 +25,7 @@
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-@endsection
 
-@section('container')
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -50,7 +50,7 @@
 
                 <div style="display: flex;justify-content:center;margin-left:3%;flex-direction:column;">
                     <div style="display: flex;">
-                        <h4 style="font-size: 36px;">{{ $user->username }}</h4>
+                        <p style="font-size: 36px;">{{ $user->username }}</p>
                         <small style="font-size: 15px;margin-top:5%;margin-left:2%;">{{ $user->tier->tier_name }}</small>
                     </div>
                     <p style="color:#BEBEBE;margin-top:3%;">{{ $user->articles()->count() }} Artikel </p>
@@ -70,19 +70,15 @@
                         </span>
                     </div>
 
-                    <div style="text-align: right;text-align: right; margin-top: 13%;">
-                        <a href="#Signup" style="padding: 10px;background-color:#FFD233;color:black;border-radius:10px;">
+                    <div style="text-align: right;text-align: right; margin-top: 13%; margin-bottom: 40px;">
+                        <a href="/edit_profile" style="padding: 10px;background-color:#FFD233;color:black;border-radius:10px;">
                             Edit Profile
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="garis-section">
                 <a href="javascript:;" style="font-size:25px;margin-left:1%;border-bottom: 3px solid #FFD233;">Artikel</a>
-                {{-- <a href="{{ url('profile/diskusi') }}" style="font-size:25px;margin-left:3%;">Diskusi</a> --}}
-            </div>
-
+                <div class="garis-section"></div>
     </section>
 
 
@@ -99,21 +95,16 @@
                                     <div class="kotak-terbaru">
                                         <a href="{{ url(sprintf('article/%s', $article->slug)) }}">
                                             @if($article->photo)
-                                                <img src="{{ asset('storage/photos/'.$article->photo) }}">
+                                                <img src="{{ asset('storage/photo/'.$article->photo) }}">
                                             @else
                                                 <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}" alt="">
                                             @endif
                                             {{-- <img src="https://source.unsplash.com/300x180/?{{ $article->tag->name }}" alt=""> --}}
-                                        </a>
-                                        
-                                        <div class="text-terbaru">
-                                            
-                                            <div class="title-terbaru">
-                                                <a href="{{ url(sprintf('article/%s', $article->slug)) }}">
+                                            <div class="text-terbaru">
+                                                <div class="title-terbaru">
                                                     <h3>{{ $article->title }}</h3>
-                                                </a>
-                                            </div>
-                                            
+                                                </div>
+                                        </a>
                                             <div class="waktu-upload">
                                                 <p>{{ $article->created_at->diffForHumans() }}</p>
                                             </div>
