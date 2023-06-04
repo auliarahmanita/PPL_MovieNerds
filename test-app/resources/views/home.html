@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieNerds</title>
+    <link rel="stylesheet" href="css/article.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="js/coba.js">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="my-width">
+            <div class="logo">
+                <a href="#Home"><img src="img/logo-longversion.jpg" alt=""></a></div>
+            <ul class="menu">
+                <li><a href="#Article" class="menu-btn">Article</a></li>
+                <li><a href="#Discussion" class="menu-btn">Discussion</a></li>
+                <li><a href="#Tierlist" class="menu-btn">Tierlist</a></li>
+                <li><a href="#About Us" class="menu-btn">About Us</a></li>
+                <li class="search-box">
+                    <input type="text" name="search" placeholder="Search Here.." >
+                </li>
+                <li><a href="#Signin" class="menu-btn">Sign in</a></li>
+                <li><a href="#Signup" class="btn-signup">
+                    <input type="button" value="Sign Up" >
+                </a></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <section class="hotnews">
+        <div class="my-width">
+            <div class="hotnews-content">
+                <a href="#article">
+                    <img src="img/hotnews.jpg" alt="">
+                    <div class="text-hotnews">
+                        <div class="title-hotnews">
+                            <h1>Trailer Sewu Dino Sudah Rilis, Penonton Dibuat Ngeri Dengan Kebrutalan Kimo!</h1>
+                        </div>
+                        <div class="waktu-upload">
+                            <p>2 Jam yang lalu</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="penulis-hotnews">
+                    <div class="foto-profile">
+                        <img src="img/profile-pict.jpg" alt="">
+                    </div>
+                    <div class="akun-hotnews">
+                        <a href="#akun-penulis">
+                            <div class="nama-akun">
+                                <p>Jakasembung24</p>
+                            </div>
+                        </a>
+                        <div class="tier-status">
+                            <p>Tier</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="populer">
+        <div class="my-width">
+            <div class="populer-content">
+                <div class="title-section">
+                    <p>Populer</p>
+                </div>
+            </div>
+        </div>
+        <div class="bungkus">
+            <i class="fas fa-solid fa-angle-left" id="left"></i>
+            <div class="karesel">
+                @foreach ($popularArticles as $article)
+                <div class="kotak">
+                    <a href="/article/{{ $article->slug }}"" class="text-white text-decoration-none">>
+                        <img src="https://source.unsplash.com/500x400/?{{ $article->tag->name }}" class="card-img-top" alt="{{ $article->tag->name }}">
+                        <h2>{{ $article->title }}</h2>
+                    </a>
+                </div>
+                @endforeach
+            <i class="fas fa-solid fa-angle-right" id="right"></i>
+        </div>
+    </section>
+    <section class="terbaru">
+        <div class="my-width">
+            <div class="terbaru-content">
+                <div class="title-section">
+                    <p>Terbaru</p>
+                </div>
+                <ul>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="karesel">
+                            <div class="kotak-terbaru">
+                                <a href="#article">
+                                    <img src="img/hotnews.jpg" alt="">
+                                    <div class="text-terbaru">
+                                        <div class="title-terbaru">
+                                            <h3>5 Rekomendasi Drakor Temani Puasa Pekan Ini, Hospital Playlist</h3>
+                                        </div>
+                                </a>
+                                    <div class="waktu-upload">
+                                        <p>7 Jam yang lalu</p>
+                                    </div>
+                                    <div class="penulis-terbaru">
+                                        <img src="img/profile-pict.jpg" alt="">
+                                        <div class="akun-terbaru">
+                                            <a href="#akun-penulis">
+                                                <div class="nama-akun">
+                                                    <p>Jakasembung24</p>
+                                                </div>
+                                            </a>
+                                            <div class="tier-status">
+                                                <p>Tier</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="my-width">
+            <div class="footer-box">
+                <div class="text-footer">
+                    <a href="#ketentuan">Syarat dan Ketentuan</a>
+                    <p class="pemisah"> | </p>
+                    <a href="#ikuti">Ikuti Kami</a>
+                    <p class="pemisah"> | </p>
+                    <a href="about">About</a>
+                </div>
+                <div class="copyright">
+                    <p>Copyright © 2023 MovieNerds</p>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
