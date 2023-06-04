@@ -330,8 +330,7 @@ section{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-
+} 
 .akun-terbaru{
     display: flex;
     margin-left: 10px;
@@ -340,31 +339,20 @@ section{
 .terbaru-content li{
     list-style: none;
 }
-
-/* footer */
-footer{
-    background-color: #505050;
+/* Comment */
+.comments-section{
+    margin-top: 20px;
 }
-footer .my-width{
-    width: 1120px;
-    text-align: center;
-}
-.footer-box{
-    height: 140px;
-}
-.text-footer{
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-}
-
-.text-footer .pemisah{
-    margin-left: 12px;
-    margin-right: 12px;
-}
-.copyright{
-    margin-top: 15px;
-    color: #BEBEBE;
+textarea{
+    width: 83%;
+    height: 40px;
+    background: #505050;
+    border-radius: 50px;
+    cursor: pointer;
+    resize: none;
+    padding: 10px 0px 0px 40px;
+    line-height: 20px;
+    margin-left: 20px
 }
 
 /* responsive media query start */

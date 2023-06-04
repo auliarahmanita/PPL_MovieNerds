@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
     <title>MovieNerds</title>
     @yield('head')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('js/coba.js') }}">
 
     @yield('styles')
 </head>
+
 <body>
     <nav class="navbar">
         <div class="my-width" style="max-width: 1600px;">
@@ -25,25 +27,26 @@
                 <li><a href="/about" class="menu-btn">About Us</a></li>
                 <li class="search-box">
                     <form action="/api/articles">
-                    @if (request('tag'))
-                        <input type="hidden" name="tag" value="{{ request('tag') }}">
-                    @endif
-                    @if (request('author'))
-                        <input type="hidden" name="author" value="{{ request('author') }}">
-                    @endif  
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search Here..." name="search" value="{{ request('search') }}">
-                        <!-- <button class="btn-search" type="submit" >Search</button> -->
-                    </div>
+                        @if (request('tag'))
+                            <input type="hidden" name="tag" value="{{ request('tag') }}">
+                        @endif
+                        @if (request('author'))
+                            <input type="hidden" name="author" value="{{ request('author') }}">
+                        @endif
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search Here..." name="search"
+                                value="{{ request('search') }}">
+                            <!-- <button class="btn-search" type="submit" >Search</button> -->
+                        </div>
                     </form>
-                </li> 
+                </li>
                 @guest
-                        <li><a href="{{ url('login') }}" class="menu-btn">Sign in</a></li>
-                        <li><a href="/register" class="btn-signup">
-                                <input type="button" value="Sign Up">
-                            </a></li>
+                    <li><a href="{{ url('login') }}" class="menu-btn">Sign in</a></li>
+                    <li><a href="/register" class="btn-signup">
+                            <input type="button" value="Sign Up">
+                        </a></li>
                 @else
-                    <li>
+                    {{-- <li>
                         <div style="display:flex;margin-left: 10%;" class="dropdown">
                             <div style="display:flex; align-items:center;">
                                 <a href="javascript:;" onclick="showDropdownProfile()" class="dropbtn">
@@ -74,6 +77,46 @@
                                 </a>
                             </div>
                         </div>
+                    </li> --}}
+                    <li>
+                        <div
+                            style="justify-content: center;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;margin-left: 100px;">
+                            <div class="hamburger-menu" onclick="toggleDropdown()">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown" id="dropdown-menu">
+                            @guest
+                                <a href="{{ route('login') }}">Login</a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}">Register</a>
+                                @endif
+                            @else
+                                <a href="/create">Buat Artikel</a>
+
+                                @can('admin')
+                                    <a href="/admin/review-list">Review Article</a>
+                                @endcan
+
+                                <a href="/profile">Profil</a>
+                                <form action="" method="post">
+                                    @csrf
+                                    <a href="/logout">Logout</a>
+                                </form>
+                            @endguest
+                        </div>
+                        <script>
+                            function toggleDropdown() {
+                                var dropdownMenu = document.getElementById("dropdown-menu");
+                                dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+                            }
+                        </script>
                     </li>
                 @endguest
             </ul>
@@ -82,49 +125,50 @@
 </body>
 
 {{-- Main Content --}}
-    @yield('container')
+@yield('container')
 
-    <footer>
-        <div class="my-width">
-            <div class="footer-box">
-                <div class="text-footer">
-                    <a href="#ketentuan">Syarat dan Ketentuan</a>
-                    <p class="pemisah"> | </p>
-                    <a href="#ikuti">Ikuti Kami</a>
-                    <p class="pemisah"> | </p>
-                    <a href="about">About</a>
-                </div>
-                <div class="copyright">
-                    <p>Copyright © 2023 MovieNerds</p>
-                </div>
-
+<footer>
+    <div class="my-width">
+        <div class="footer-box">
+            <div class="text-footer">
+                <a href="#ketentuan">Syarat dan Ketentuan</a>
+                <p class="pemisah"> | </p>
+                <a href="#ikuti">Ikuti Kami</a>
+                <p class="pemisah"> | </p>
+                <a href="about">About</a>
             </div>
+            <div class="copyright">
+                <p>Copyright © 2023 MovieNerds</p>
+            </div>
+
         </div>
-    </footer>
+    </div>
+</footer>
 
-    {{-- Jquery --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- Jquery --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    {{-- Dropdown user profile in navbar --}}
-    <script>
-        function showDropdownProfile() {
-            let currentDisplay = $('.dropdown-content').css('display');
+{{-- Dropdown user profile in navbar --}}
+<script>
+    function showDropdownProfile() {
+        let currentDisplay = $('.dropdown-content').css('display');
 
-            if (currentDisplay === 'none') {
-                $('.dropdown-content').css('display', 'grid')
-            } else {
-                $('.dropdown-content').css('display', 'none')
-            }
-
+        if (currentDisplay === 'none') {
+            $('.dropdown-content').css('display', 'grid')
+        } else {
+            $('.dropdown-content').css('display', 'none')
         }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                $('.dropdown-content').css('display', 'none')
-            }
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            $('.dropdown-content').css('display', 'none')
         }
-    </script>
+    }
+</script>
 </body>
+
 </html>
