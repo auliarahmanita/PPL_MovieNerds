@@ -53,7 +53,7 @@
         <p class="text-center fs-4">No articles Found</p>
     @endif
 
-    <div class="d-flex justify-content-center" >
+    <div>
         {{ $articles->links() }}
     </div>
 
