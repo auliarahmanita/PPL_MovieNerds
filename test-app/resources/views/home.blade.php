@@ -24,7 +24,11 @@
                 </a>
                 <div class="penulis-hotnews">
                     <div class="foto-profile">
-                        <img src="img/profile-pict.jpg" alt="">
+                        @if( $reviewedArticles[0]->user && $reviewedArticles[0]->user->photo)
+                            <img src="{{ asset('storage/photos/'.$reviewedArticles[0]->user->photo) }}">
+                        @else
+                            <img src="{{ asset('img/profile.jpeg') }}">
+                        @endif
                     </div>
                     <div class="akun-hotnews">
                         <a href="/articles/?author={{ $reviewedArticles[0]->author->username }}">
@@ -33,7 +37,7 @@
                             </div>
                         </a>
                         <div class="tier-status">
-                            <p>Tier</p>
+                            <p>{{ $reviewedArticles[0]->author->tier->tier_name}}</p>
                         </div>
                     </div>
 
@@ -86,7 +90,11 @@
                                         <p>{{ $article->created_at->diffForHumans() }}</p>
                                     </div>
                                     <div class="penulis-terbaru">
-                                        <img src="img/profile-pict.jpg" alt="">
+                                        @if( $reviewedArticles[0]->user && $reviewedArticles[0]->user->photo)
+                                            <img src="{{ asset('storage/photos/'.$reviewedArticles[0]->user->photo) }}">
+                                        @else
+                                            <img src="{{ asset('img/profile.jpeg') }}">
+                                        @endif
                                         <div class="akun-terbaru">
                                             <a href="#akun-penulis">
                                                 <div class="nama-akun">
@@ -94,7 +102,7 @@
                                                 </div>
                                             </a>
                                             <div class="tier-status">
-                                                <p>Tier</p>
+                                                <p>{{ $article->author->tier->tier_name}}</p>
                                             </div>
                                         </div>
                                     </div>

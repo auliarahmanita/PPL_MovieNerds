@@ -13,27 +13,31 @@ use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
     public function index()
-{
-    $title = '';
-    if (request('tag')) {
-        $tag = Tag::firstWhere('slug', request('tag'));
-        $title = ' in ' . $tag->name;
-    }
+    {
+        $title = '';
+        if (request('tag')) {
+            $tag = Tag::firstWhere('slug', request('tag'));
+            $title = ' in ' . $tag->name;
+        }
 
-    if (request('author')) {
-        $author = User::firstWhere('username', request('author'));
-        $title = ' by ' . $author->name;
-    }
+        if (request('author')) {
+            $author = User::firstWhere('username', request('author'));
+            $title = ' by ' . $author->name;
+        }
 
-    $articles = Article::latest()->filter(request(['search', 'tag', 'author']))
-                ->paginate(7)->withQueryString();
+        // $articles = Article::latest()->filter(request(['search', 'tag', 'author']))
+        //             ->paginate(7)->withQueryString();
 
-    return view('articles.articles', [
-        'active' => 'articles',
-        'title' => 'All Articles' . $title,
-        'articles' => $articles
-    ]);
-}   
+        $articles = Article::latest()
+                ->filter(request(['search', 'tag', 'author']))
+                ->simplePaginate(7);
+
+        return view('articles.articles', [
+            'active' => 'articles',
+            'title' => 'All Articles' . $title,
+            'articles' => $articles
+        ]);
+    }   
 
     public function home()
     {
