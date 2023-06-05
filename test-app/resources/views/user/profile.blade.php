@@ -138,8 +138,12 @@
                                             </a>
                                             <div style="display:none;background-color: #616161;padding:10px;flex-direction:column;border-radius:10px;gap:10px;position: absolute;"
                                                 id="action-article-{{ $article->id }}">
-                                                <a href="javascript:;">Edit</a>
-                                                <a href="javascript:;">Hapus</a>
+                                                <a href="/dashboard/articles/{{ $article->slug }}/edit">Edit</a>
+                                                <form style="cursor: pointer;" action="/dashboard/articles/{{ $article->id}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a onclick="return confirm('Are you sure to delete this post?')">Hapus</a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
-{{-- Page CSS --}}
+{{-- @extends(Auth::check() ? 'partials.navbarlogged' : 'layouts.main') --}}
+
 @section('head')
-<link rel="stylesheet" href="{{ asset('css/article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
 @endsection
 
 {{-- Page Styles --}}
@@ -143,75 +144,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="populer">
-        <div class="my-width">
-            <div class="populer-content">
-                <div class="title-section">
-                    <p>Populer</p>
-                </div>
-            </div>
-        </div>
-        <div class="bungkus">
-            <i class="fas fa-solid fa-angle-left" id="left"></i>
-            <div class="karesel">
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-                <div class="kotak">
-                    <a href="">
-                        <img src="{{ asset('img/hotnews.jpg') }}" alt="">
-                        <h2>Hugh Grant Ingin Hapus Film Ini dari Filmografinya</h2>
-                    </a>
-                </div>
-            </div>
-            <i class="fas fa-solid fa-angle-right" id="right"></i>
         </div>
     </section>
 @endsection

@@ -130,10 +130,10 @@
             </ul>
         </div>
     </nav>
-</body> 
 
-{{-- Main Content --}}
-@yield('container')
+<div class="container">
+    @yield('container')
+</div>
 
 <footer>
     <div class="my-width">
