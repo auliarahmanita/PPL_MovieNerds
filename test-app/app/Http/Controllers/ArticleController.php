@@ -52,8 +52,6 @@ class ArticleController extends Controller
             $title = ' by ' . $author->name;
         }
 
-        $articles = 
-
         $reviewedArticles = Article::where('reviewed', 1)
             ->latest()
             ->filter(request(['search', 'tag', 'author']))
