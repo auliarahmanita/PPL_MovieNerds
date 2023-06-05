@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
-{{-- Page CSS --}}
+{{-- @extends(Auth::check() ? 'partials.navbarlogged' : 'layouts.main') --}}
+
 @section('head')
-<link rel="stylesheet" href="{{ asset('css/article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
 @endsection
 
 {{-- Page Styles --}}
