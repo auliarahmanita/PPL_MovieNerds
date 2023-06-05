@@ -15,11 +15,14 @@
     <section class="discuss">
         <div class="my-width">
             <div class="content">
+
                 <form class="add-discuss" action="{{ route('create.post') }}" method="post">
+                    @auth
                     @csrf
                     <div class="akun owner">
                         <img src="img/profile.jpeg" alt="" />
                     </div>
+
                     <input type="text" placeholder="Ask Here... What Are You Curious About?" style="margin-right:10px;"
                         name="content" />
 
@@ -27,6 +30,7 @@
                         style="display:flex;justify-content:center;background-color:#505050;padding:10px;border-radius:15px;gap:10px;cursor:pointer;border:none;min-width:70px;margin-right:10px;">
                         Kirim
                     </button>
+                    @endauth
                 </form>
 
                 @forelse($posts as $key => $post)
