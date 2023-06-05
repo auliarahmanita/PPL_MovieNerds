@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>MovieNerds</title>
     @yield('head')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -18,7 +18,7 @@
     <nav class="navbar">
         <div class="my-width" style="max-width: 1600px;">
             <div class="logo">
-                <a href="/landing"><img src="img/logo-longversion.jpg" alt=""></a>
+                <a href="/landing"><img src="/img/logo-longversion.jpg" alt=""></a>
             </div>
             <ul class="menu">
                 <li><a href="/home" class="menu-btn">Beranda</a></li>
