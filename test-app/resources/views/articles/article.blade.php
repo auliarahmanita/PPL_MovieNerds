@@ -93,7 +93,9 @@
                 <div class="isi-article">
                     {!! $article->konten !!}
                 </div>
-                <a href="/api/articles" class="d-block mt-3">Back to Articles</a>
+                <a href="/api/articles" class="backto">
+                    <input type="button" value="Back to Articles">
+                </a>
                 <div class="comments-section">
                     <h2>Comments</h2>
                     <div class="comment-form">
