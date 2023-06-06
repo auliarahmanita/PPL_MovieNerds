@@ -257,6 +257,12 @@ section{
     font-size: 40px;
     margin-top: 15px;
 }
+
+.title-index{
+    font-weight: 700;
+    font-size: 40px;
+    padding-top: 120px;
+}
 /* slider */
 
 .bungkus{
@@ -366,10 +372,10 @@ textarea{
     line-height: 20px;
     margin-left: 20px
 }
-
 .backto{
     margin-top: 20px;
 }
+
 
 /* responsive media query start */
 @media (max-width: 1104px) {
